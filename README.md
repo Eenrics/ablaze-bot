@@ -1,23 +1,32 @@
-# Ablaze Company Landing Page
+```
+      ___           ___           ___           ___                    ___           ___           ___           ___     
+     /|  |         /\__\         /\  \         /\  \                  /\__\         /\  \         /\  \         /\__\    
+    |:|  |        /:/ _/_        \:\  \       /::\  \                /:/ _/_       /::\  \       |::\  \       /:/ _/_   
+    |:|  |       /:/ /\__\        \:\  \     /:/\:\  \              /:/ /\  \     /:/\:\  \      |:|:\  \     /:/ /\__\  
+  __|:|  |      /:/ /:/ _/_   _____\:\  \   /:/  \:\  \            /:/ /::\  \   /:/ /::\  \   __|:|\:\  \   /:/ /:/ _/_ 
+ /\ |:|__|____ /:/_/:/ /\__\ /::::::::\__\ /:/__/ \:\__\          /:/__\/\:\__\ /:/_/:/\:\__\ /::::|_\:\__\ /:/_/:/ /\__\
+ \:\/:::::/__/ \:\/:/ /:/  / \:\~~\~~\/__/ \:\  \ /:/  /          \:\  \ /:/  / \:\/:/  \/__/ \:\~~\  \/__/ \:\/:/ /:/  /
+  \::/~~/~      \::/_/:/  /   \:\  \        \:\  /:/  /            \:\  /:/  /   \::/__/       \:\  \        \::/_/:/  / 
+   \:\~~\        \:\/:/  /     \:\  \        \:\/:/  /              \:\/:/  /     \:\  \        \:\  \        \:\/:/  /  
+    \:\__\        \::/  /       \:\__\        \::/  /                \::/  /       \:\__\        \:\__\        \::/  /   
+     \/__/         \/__/         \/__/         \/__/                  \/__/         \/__/         \/__/         \/__/  
+```
 
-_Welcome to Ablaze, your go-to source for innovative solutions! This repository contains the code for our company's landing page._
-
-> [Technologies Used](#technologies-used) > [Getting Started](#getting-started) > [Code Quality and Formatting](#code-quality-and-formatting) > [Coding Guidelines](#coding-guidelines) > [File Structure](#file-structure) > [Application Architecture](#application-architecture) > [License](#license)
+_This repository contains the code for keno telegram bot game._
 
 ## Technologies Used
 
 - Vite
 - React
-- React Router
+- GSAP
 - Tailwind css
 - ESLint
 - Prettier
 - Husky
 - Commitlint
 - Framer Motion
-- React Query
 - Signal
-- JSDoc
+- SOCKET.IO
 
 ## Getting Started
 
@@ -30,7 +39,7 @@ Make sure you have Node.js and NPM installed on your local machine
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Ablazelab/ablaze-landing.git
+git clone https://github.com/Ablazelab/keno-bot-frontend.git
 cd ablaze-landing
 ```
 
@@ -118,60 +127,11 @@ The optimized and minified files will be created in the `dist` directory.
     ├── assets/
     ├── constants/
     ├── context/
-    ├── hooks/
-    ├── layouts/
     ├── pages/
     ├── utils/
     ├── services/
     └── components/
-        ├── form/
-        └── ui/
-            ├── __test__/
-            └── __types__/
 ```
-
-## Application Architecture
-
-```mermaid
-sequenceDiagram
-    participant browser
-    participant server
-    participant administration
-
-    Note right of browser: User visits ablaze landing page
-    activate browser
-    deactivate browser
-    Note right of browser: The browser makes get request to the server
-
-    browser->>server: GET https://www.ablazelabs.com
-    activate server
-    server-->>browser: 200 {"Content-Type":"text/html"}
-    deactivate server
-    Note left of server: The server responds with html pages
-
-    Note right of browser: User visits ablaze landing page vacancy section
-    activate browser
-    deactivate browser
-    Note right of browser: The browser makes get request to the administration server
-
-    browser->>administration: GET https://api.ablazelabs.com/vacancy/
-    activate administration
-    administration-->>browser: 200 {"Content-Type":"text/html"}
-    deactivate administration
-    Note left of administration: The administration server responds with html pages
-
-    Note right of browser: User applies for one of the jobs in vacancy list
-    activate browser
-    deactivate browser
-    Note right of browser: The browser makes post request to the administration server
-
-    browser->>administration: POST https://api.ablazelabs.com/vacancy/
-    activate administration
-    administration-->>browser: 201 {"message":"applied successfully"}
-    deactivate administration
-    Note left of administration: The administration server responds with success status
-```
-
 _Documented by Ablaze Developers_
 
 ##
