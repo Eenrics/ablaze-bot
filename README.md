@@ -18,13 +18,12 @@ _This repository contains the code for keno telegram bot game._
 
 - Vite
 - React
-- GSAP
+- MATTER-JS
 - Tailwind css
 - ESLint
 - Prettier
 - Husky
 - Commitlint
-- Framer Motion
 - Signal
 - SOCKET.IO
 
