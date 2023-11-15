@@ -1,5 +1,5 @@
-import Ball from "../../Components/Ball";
-import Hero from "../../Components/Hero";
+import Ball from "../../components/Ball";
+import Hero from "../../components/Hero";
 
 function Home() {
   return (
