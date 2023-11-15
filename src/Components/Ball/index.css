@@ -1,0 +1,23 @@
+/* Add this to your styles or use a separate CSS file */
+.ball {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #3498db 0% 25%,
+    #2ecc71 25% 50%,
+    #e74c3c 50% 75%,
+    #f39c12 75% 100%
+  );
+  transform: rotateX(45deg) rotateY(45deg);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateX(45deg) rotateY(45deg);
+  }
+
+  100% {
+    transform: rotateX(405deg) rotateY(405deg);
+  }
+}
