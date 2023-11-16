@@ -10,6 +10,10 @@ export default {
       Brygada: ['"Brygada 1918"', "Questrial", "sans-serif"],
     },
     extend: {
+      backgroundImage: {
+        "loader-pattern": "url('/assets/loader.png')",
+        "game-pattern": "url('/img/footer-texture.png')",
+      },
       colors: {
         ablaze: "#1FAE63",
         textPrimary: "#E1E1E1",
