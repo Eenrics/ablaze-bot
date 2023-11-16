@@ -18,11 +18,30 @@
   -webkit-text-size-adjust: 100%;
 }
 
+@font-face {
+  font-family: "Moire";
+  src: url("/assets/fonts/moire-extrabold.woff") format("woff");
+}
+
+.moire {
+  font-family: "Moire";
+}
+
+@font-face {
+  font-family: "Good Time";
+  src: url("@assets/fonts/goodtime.ttf") format("truetype");
+}
+
+.goodtime {
+  font-family: "Good Time";
+}
+
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -51,9 +70,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -64,9 +85,11 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
