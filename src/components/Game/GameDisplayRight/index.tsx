@@ -1,8 +1,6 @@
-import React from "react";
-
 function GameDisplayRight() {
   return (
-    <div className="w-full h-full bg-transparent col-span-3 flex flex-col gap-3 ">
+    <div className="w-full h-full col-span-3 flex flex-col gap-3 ">
       <div className="flex gap-3 justify-end">
         <p className="bg-gradient-to-b from-[#ffe600] via-[#e0ce29ff]  to-[#383103ff] text-transparent bg-clip-text text-[3.4vw] moire not-italic">
           DRAW
