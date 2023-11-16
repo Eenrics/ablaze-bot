@@ -14,5 +14,10 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
+    camelcase: ["error", { properties: "always" }],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      { selector: "typeLike", format: ["PascalCase"] },
+    ],
   },
 };
