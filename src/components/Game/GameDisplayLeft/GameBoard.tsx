@@ -35,7 +35,7 @@ function GameBoard(props: Props) {
                 } rounded-[1vw]`}
               >
                 <p
-                  className={`eurasia text-center ${
+                  className={`eurasia text-center text-[4vw] ${
                     winNumbers?.includes(num)
                       ? "text-black shadow-text"
                       : "text-white/20"

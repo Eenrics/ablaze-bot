@@ -2,7 +2,7 @@ import React from "react";
 import GameTitle from "./GameTitle";
 import GameBoard from "./GameBoard";
 
-const winNumbers = [1, 2, 3, 4, 80, 30, 53, 5, 26, 46];
+const winNumbers = [1, 2, 3, 4, 80, 30, 53, 5, 26, 46, 47];
 const data = Array.from({ length: 80 }, (_, index) => index + 1);
 function GameDisplayLeft() {
   return (
