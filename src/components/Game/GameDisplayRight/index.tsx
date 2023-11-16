@@ -1,4 +1,20 @@
+import DisplayBallDrawn from "./DisplayBallDrawn";
+import DisplayHitWin from "./DisplayHitWin";
+import { useEffect, useState } from "react";
+
 function GameDisplayRight() {
+  const [screen, setScreen] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setScreen((prev) => (prev === 0 ? 1 : 0));
+    }, 3000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  // const [screen, setScreen] = useState(0)
+
   return (
     <div className="w-full h-full col-span-3 flex flex-col gap-3 ">
       <div className="flex gap-3 justify-end">
@@ -15,13 +31,7 @@ function GameDisplayRight() {
           00:38
         </p>
       </div>
-
-      <div className="flex flex-col items-center w-2/3 mx-auto">
-        <p className="text-center goodtime font-light capitalize">
-          <span className="text-[#EB0908]">20</span> balls drawn from{" "}
-          <span className="text-[#EB0908]">80</span>
-        </p>
-      </div>
+      {screen === 0 ? <DisplayBallDrawn /> : <DisplayHitWin />}
     </div>
   );
 }
