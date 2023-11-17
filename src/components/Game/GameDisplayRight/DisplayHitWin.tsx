@@ -6,7 +6,7 @@ function DisplayHitWin() {
   return (
     <div className="flex flex-col items-center w-5/6 mx-auto">
       <h3 className="text-[#EB0908] font-extrabold text-[5vw]">
-        {t("global.pick")} 7
+        {t("global.pick", { number: 7 })}
       </h3>
       <div className="w-full">
         <div className="grid grid-cols-2 w-full">

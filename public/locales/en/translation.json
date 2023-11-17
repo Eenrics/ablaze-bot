@@ -1,7 +1,7 @@
 {
   "global": {
     "draw": "DRAW",
-    "pick": "PICK"
+    "pick": "PICK {{number}}"
   },
   "game": {
     "hits": "HITS",

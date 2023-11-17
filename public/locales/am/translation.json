@@ -1,7 +1,7 @@
 {
   "global": {
     "draw": "ቀጣዩ",
-    "pick": "ምረጥ"
+    "pick": "{{number}} ምረጥ"
   },
   "game": {
     "hits": "ሙከራ",
