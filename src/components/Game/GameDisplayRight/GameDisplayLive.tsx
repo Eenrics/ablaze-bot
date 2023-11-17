@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { signal, useSignalEffect } from "@preact/signals-react";
 
 const showBall = signal(true);
-const currentBallNumber = signal(3);
+const currentBallNumber = signal(Math.floor(Math.random() * 80) + 1);
 
 function GameDisplayLive() {
   useSignalEffect(() => {
