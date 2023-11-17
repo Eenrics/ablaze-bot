@@ -1,4 +1,3 @@
-import React from "react";
 import GameTitle from "./GameTitle";
 import GameBoard from "./GameBoard";
 

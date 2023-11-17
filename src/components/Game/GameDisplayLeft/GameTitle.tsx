@@ -1,5 +1,3 @@
-import React from "react";
-
 function GameTitle() {
   return (
     <div className="flex gap-3">
