@@ -2,11 +2,17 @@ import { AnimatePresence, motion } from "framer-motion";
 import { signal, useSignalEffect } from "@preact/signals-react";
 
 const showBall = signal(true);
+const currentBallNumber = signal(3);
 
 function GameDisplayLive() {
   useSignalEffect(() => {
     const intervalId = setInterval(() => {
-      showBall.value = !showBall.value;
+      if (showBall.value) {
+        showBall.value = false;
+      } else {
+        currentBallNumber.value = Math.floor(Math.random() * 80) + 1;
+        showBall.value = true;
+      }
     }, 3000);
 
     return () => clearTimeout(intervalId);
@@ -28,7 +34,7 @@ function GameDisplayLive() {
             exit={{ scale: 0, y: -300 }}
             className="absolute [box-shadow:_inset_2px_2px_24px_0_rgb(0_0_0_/_1);] flex justify-center items-center text-[10vw] font-bold mt-6 z-10 left-0 right-0 bg-yellow-400 rounded-full w-[99%] aspect-square"
           >
-            <p className="shake">3</p>
+            <p className="shake">{currentBallNumber}</p>
           </motion.div>
         )}
       </AnimatePresence>
