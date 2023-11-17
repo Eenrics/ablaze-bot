@@ -171,3 +171,15 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.background-container {
+  height: 29vh;
+  width: 100vw;
+  background-image: url("/src/assets/poster.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
