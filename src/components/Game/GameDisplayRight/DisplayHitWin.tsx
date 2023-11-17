@@ -10,10 +10,10 @@ function DisplayHitWin() {
       </h3>
       <div className="w-full">
         <div className="grid grid-cols-2 w-full">
-          <h4 className="text-[#FFB800] font-extrabold text-center">
+          <h4 className="text-[#FFB800] font-extrabold text-center text-[4vw]">
             {t("game.hits")}
           </h4>
-          <h4 className="text-[#FFB800] font-extrabold text-center">
+          <h4 className="text-[#FFB800] font-extrabold text-center text-[4vw]">
             {t("game.win")}
           </h4>
         </div>

@@ -33,6 +33,7 @@ function GameDisplayRight() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* <GameDisplayLive /> */}
     </div>
   );
 }

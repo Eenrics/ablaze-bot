@@ -173,3 +173,53 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.shake {
+  animation: tilt-shaking infinite 0.2s ease-in-out;
+}
+
+@keyframes tilt-shaking {
+  0% {
+    transform: rotate(0deg);
+    transform: translateX(1px);
+  }
+
+  10% {
+    transform: rotate(0eg);
+    transform: translateX(-1px);
+  }
+
+  25% {
+    transform: rotate(5deg);
+    transform: translateX(1px);
+  }
+
+  35% {
+    transform: rotate(0eg);
+    transform: translateX(-1px);
+  }
+
+  50% {
+    transform: rotate(0eg);
+    transform: translateX(1px);
+  }
+
+  60% {
+    transform: rotate(0eg);
+    transform: translateX(1px);
+  }
+
+  75% {
+    transform: rotate(-5deg);
+    transform: translateX(-1px);
+  }
+
+  85% {
+    transform: rotate(0eg);
+    transform: translateX(-1px);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
