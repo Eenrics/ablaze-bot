@@ -29,7 +29,7 @@ function GameBoard(props: Props) {
                 className={`font-semibold aspect-square flex w-full h-full justify-center items-center ${
                   winNumbers?.includes(num)
                     ? num > 40
-                      ? "bg-[#f6f640]/60"
+                      ? "bg-[#ffa640]/100"
                       : "bg-[#f6f640]/100"
                     : "bg-gradient-to-b from-[#B31700] to-[#810801]"
                 } rounded-[1vw]`}
