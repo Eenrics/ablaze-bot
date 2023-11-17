@@ -20,7 +20,7 @@ function GameDisplayLive() {
   return (
     <div className="w-full h-full relative flex flex-col gap-3 justify-center items-center bg-gradient-to-r from-[#F63308] to-[#EC1100] overflow-hidden">
       <img
-        className=" scale-[300%] z-20 min-h-[90px]"
+        className=" scale-[300%] z-20 h-[80px]"
         src="/assets/balls/glass_container.png"
         alt=""
       />
