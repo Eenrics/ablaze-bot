@@ -6,6 +6,7 @@ import {
   displayRight,
 } from "../../../utils/displayRightSignal";
 import { useTranslation } from "react-i18next";
+import GameDisplayStatTimer from "./GameDisplayStatTimer";
 
 function GameDisplayStat() {
   const { t } = useTranslation();
@@ -32,9 +33,7 @@ function GameDisplayStat() {
       </div>
 
       <div className="flex flex-col w-full items-center">
-        <p className=" bg-gradient-to-b text-[5vw] from-[#FFB700] to-[#B07F00]  text-transparent bg-clip-text moire">
-          00:38
-        </p>
+        <GameDisplayStatTimer />
       </div>
       {displayRight.value === DisplayRightType.BALLDRAWN ? (
         <DisplayBallDrawn />
