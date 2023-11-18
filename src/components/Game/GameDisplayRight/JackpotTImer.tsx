@@ -2,7 +2,7 @@ import { useTimer } from "react-timer-hook";
 
 function JackpotTImer() {
   const time = new Date();
-  time.setHours(10);
+  time.setHours(100);
   time.setMinutes(30);
   time.setSeconds(0);
   const { seconds, minutes, hours } = useTimer({
