@@ -55,7 +55,8 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,html,css,json}": [
-      "npm prettier --write"
+      "npm run lint",
+      "npm run format"
     ]
   }
 }
