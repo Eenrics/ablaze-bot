@@ -1,3 +1,4 @@
+// packages
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -13,6 +14,9 @@ import RootLayout from "./layouts/RootLayout";
 import ErrorPage from "./components/ErrorPage";
 import GameLayout from "./layouts/GameLayout";
 import Game from "./pages/Game";
+import { useEffect } from "react";
+
+const tele = window.Telegram.WebApp;
 import BlowAnimation from "./pages/BlowAnimation";
 import BlowAnimationLayout from "./layouts/BlowAnimationLayout";
 
@@ -36,6 +40,9 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  useEffect(() => {
+    tele.ready();
+  });
   return <RouterProvider router={router} />;
 }
 

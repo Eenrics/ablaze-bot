@@ -4,7 +4,7 @@ import GameHeader from "../../components/Game/GameHeader";
 
 export default function GameLayout() {
   return (
-    <div className="game-layout h-screen w-screen">
+    <div className="game-layout h-full w-full">
       <ScrollRestoration />
       <GameBGPattern />
 
