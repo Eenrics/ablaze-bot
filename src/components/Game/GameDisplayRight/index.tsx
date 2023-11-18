@@ -11,7 +11,6 @@ function GameDisplayRight() {
         display.value === DisplayType.STAT
           ? DisplayType.LIVE
           : DisplayType.STAT;
-      console.log(display.value);
     }, 10000);
 
     return () => clearInterval(intervalId);

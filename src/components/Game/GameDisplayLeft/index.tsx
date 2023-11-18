@@ -12,7 +12,6 @@ function GameDisplayLeft() {
         ...winNumbers.value,
         Math.floor(Math.random() * 80) + 1,
       ];
-      console.log(winNumbers);
     }, 3000);
     return () => clearInterval(intervalId);
   }, []);
