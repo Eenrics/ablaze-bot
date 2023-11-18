@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import GameTitle from "./GameTitle";
 import GameBoard from "./GameBoard";
 import { signal } from "@preact/signals-react";
