@@ -1,6 +1,6 @@
 import GameTitle from "./GameTitle";
 import GameBoard from "./GameBoard";
-import { selectedBalls } from "../../../services/countDownTimer";
+import { selectedBalls } from "../../../services/gameService";
 
 const data = Array.from({ length: 80 }, (_, index) => index + 1);
 

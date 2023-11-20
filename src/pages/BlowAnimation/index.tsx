@@ -2,7 +2,7 @@ import Jackpot from "../../components/Jackpot";
 import Animation from "../../components/BlowAniumation/animation";
 import "../../index.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { currentRoute } from "../../services/general";
+import { currentRoute } from "../../services/routeService";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 

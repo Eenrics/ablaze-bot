@@ -2,7 +2,7 @@ import {
   hoursDisplay,
   minutesDisplay,
   secondsDisplay,
-} from "../../../services/countDownTimer";
+} from "../../../services/timeCounterService";
 function JackpotTImer() {
   return (
     <p

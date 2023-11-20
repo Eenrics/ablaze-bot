@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
-import { currentRoute } from "../../services/general";
+import { currentRoute } from "../../services/routeService";
 import { useEffect } from "react";
 
 function UpcomingEvents() {

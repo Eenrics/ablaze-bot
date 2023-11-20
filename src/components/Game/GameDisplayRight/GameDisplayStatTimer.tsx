@@ -1,7 +1,7 @@
 import {
   minutesDisplay,
   secondsDisplay,
-} from "../../../services/countDownTimer";
+} from "../../../services/timeCounterService";
 
 function GameDisplayStatTimer() {
   return (

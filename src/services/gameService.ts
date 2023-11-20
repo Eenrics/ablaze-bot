@@ -1,5 +1,5 @@
 import { effect, signal } from "@preact/signals-react";
-import { currentRoute, nextRoute } from "./general";
+import { currentRoute, nextRoute } from "./routeService";
 import { display, DisplayType } from "../utils/displayGameSignal";
 import {
   TimerStatus,
@@ -98,11 +98,10 @@ enum GameEngineRouter {
 
 const gameEngineRouter = signal<GameEngineRouter>(GameEngineRouter.INTRO);
 
-const GameEngine = () => {
+export const GameEngine = () => {
   // SECOND ROUTE
   effect(() => {
     if (timerStatus.value === TimerStatus.TIMEOUT) {
-      console.log("timeout **");
       timerStatus.value = TimerStatus.STOPPED;
       currentRoute.value = "/intro";
       setTimeout(() => {
@@ -119,7 +118,6 @@ const GameEngine = () => {
       gameStatus.value === GameStatus.STOPPED &&
       gameEngineRouter.value === GameEngineRouter.HISTORY
     ) {
-      console.log("animationStatus **");
       currentRoute.value = "/history";
       setTimeout(() => {
         currentRoute.value = "/";
@@ -144,5 +142,3 @@ const GameEngine = () => {
     }
   });
 };
-
-GameEngine();

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { showBall } from "../../../services/countDownTimer";
-import { selectedBall } from "../../../services/countDownTimer";
+import { showBall } from "../../../services/gameService";
+import { selectedBall } from "../../../services/gameService";
 
 function GameDisplayLive() {
   return (

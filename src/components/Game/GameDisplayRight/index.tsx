@@ -4,17 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { DisplayType, display } from "../../../utils/displayGameSignal";
 
 function GameDisplayRight() {
-  // useSignalEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     display.value =
-  //       display.value === DisplayType.STAT
-  //         ? DisplayType.LIVE
-  //         : DisplayType.STAT;
-  //   }, 10000);
-
-  //   return () => clearInterval(intervalId);
-  // });
-
   return (
     <div className="w-full h-full col-span-3">
       <AnimatePresence>

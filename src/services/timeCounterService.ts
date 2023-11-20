@@ -1,5 +1,5 @@
 import { computed, effect, signal } from "@preact/signals-react";
-import { currentRoute, nextRoute } from "./general";
+import { currentRoute, nextRoute } from "./routeService";
 import { display, DisplayType } from "../utils/displayGameSignal";
 
 export const days = signal<number>(0);
@@ -59,12 +59,6 @@ export const stopTimer = () => {
 };
 
 effect(() => {
-  console.log(
-    "timerStatus",
-    seconds.value,
-    timerStatus.value,
-    currentRoute.value,
-  );
   if (timerStatus.value === TimerStatus.RUNNING) {
     const interval = setInterval(() => {
       if (seconds.value > 0) {

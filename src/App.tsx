@@ -18,6 +18,7 @@ import Game from "./pages/Game";
 import { useEffect } from "react";
 import UpcomingEventsLayout from "./layouts/UpcomingEventsLayout";
 import UpcomingEvents from "./pages/UpcomingEvents";
+import { GameEngine } from "./services/gameService";
 
 const tele = window.Telegram.WebApp;
 
@@ -46,7 +47,8 @@ const router = createBrowserRouter(
 function App() {
   useEffect(() => {
     tele.ready();
-  });
+    GameEngine();
+  }, []);
 
   return <RouterProvider router={router} />;
 }

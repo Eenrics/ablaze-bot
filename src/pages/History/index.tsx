@@ -1,6 +1,6 @@
 import History from "../../components/History";
 import Jackpot from "../../components/Jackpot";
-import { currentRoute } from "../../services/general";
+import { currentRoute } from "../../services/routeService";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
