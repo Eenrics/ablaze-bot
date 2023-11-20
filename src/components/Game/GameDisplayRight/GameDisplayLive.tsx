@@ -1,22 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { signal, useSignalEffect } from "@preact/signals-react";
-
-const showBall = signal(true);
-const currentBallNumber = signal(Math.floor(Math.random() * 80) + 1);
+import { showBall } from "../../../services/countDownTimer";
+import { selectedBall } from "../../../services/countDownTimer";
 
 function GameDisplayLive() {
-  useSignalEffect(() => {
-    const intervalId = setInterval(() => {
-      if (showBall.value) {
-        showBall.value = false;
-      } else {
-        currentBallNumber.value = Math.floor(Math.random() * 80) + 1;
-        showBall.value = true;
-      }
-    }, 3000);
-
-    return () => clearTimeout(intervalId);
-  });
   return (
     <div className="w-full h-full relative flex flex-col gap-3 justify-center items-center bg-gradient-to-r from-[#F63308] to-[#EC1100] overflow-hidden">
       <img
@@ -35,7 +21,7 @@ function GameDisplayLive() {
             className="absolute [box-shadow:_inset_-8px_2px_24px_0_rgb(0_0_0_/_1);] flex justify-center items-center mt-6 z-10 left-0 right-0 bg-yellow-400 rounded-full w-[99%] aspect-square"
           >
             <p className="shake text-[12vw] font-bold text-black">
-              {currentBallNumber}
+              {selectedBall}
             </p>
           </motion.div>
         )}

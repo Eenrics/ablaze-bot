@@ -7,7 +7,8 @@ import {
 } from "react-router-dom";
 
 // pages
-import Home from "./pages/Home";
+import BlowAnimation from "./pages/BlowAnimation";
+import History from "./pages/History";
 
 // layouts
 import RootLayout from "./layouts/RootLayout";
@@ -15,25 +16,28 @@ import ErrorPage from "./components/ErrorPage";
 import GameLayout from "./layouts/GameLayout";
 import Game from "./pages/Game";
 import { useEffect } from "react";
+import UpcomingEventsLayout from "./layouts/UpcomingEventsLayout";
+import UpcomingEvents from "./pages/UpcomingEvents";
 
 const tele = window.Telegram.WebApp;
-import BlowAnimation from "./pages/BlowAnimation";
-import BlowAnimationLayout from "./layouts/BlowAnimationLayout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
-      <Route index element={<Home />} />
-
-      <Route path="/game" element={<GameLayout />} errorElement={<ErrorPage />}>
+      {/* GAME ROUTES */}
+      <Route path="/" element={<GameLayout />} errorElement={<ErrorPage />}>
         <Route index element={<Game />} />
+        <Route path="/intro" element={<BlowAnimation />} />
+        <Route path="/history" element={<History />} />
       </Route>
+
+      {/* UPCOMING EVENTS ROUTES */}
       <Route
-        path="/intro"
-        element={<BlowAnimationLayout />}
+        path="/upcoming-events"
+        element={<UpcomingEventsLayout />}
         errorElement={<ErrorPage />}
       >
-        <Route index element={<BlowAnimation />} />
+        <Route index element={<UpcomingEvents />} />
       </Route>
     </Route>,
   ),
@@ -43,6 +47,7 @@ function App() {
   useEffect(() => {
     tele.ready();
   });
+
   return <RouterProvider router={router} />;
 }
 
