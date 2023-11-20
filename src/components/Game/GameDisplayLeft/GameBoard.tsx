@@ -30,7 +30,7 @@ function GameBoard(props: Props) {
                     ? num > 40
                       ? "bg-[#ffa640]/100"
                       : "bg-[#f6f640]/100"
-                    : "bg-gradient-to-b from-[#B31700] to-[#810801]"
+                    : "bg-gradient-to-b from-[#B317001f] to-[#6305009f]"
                 } rounded-[1vw]`}
               >
                 <p

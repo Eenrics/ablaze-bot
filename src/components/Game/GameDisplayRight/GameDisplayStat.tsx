@@ -24,7 +24,7 @@ function GameDisplayStat() {
   return (
     <div className="py-3 w-full h-full flex flex-col gap-3 ">
       <div className="flex gap-3 justify-end">
-        <p className="bg-gradient-to-b from-[#ffe600] via-[#e0ce29ff]  to-[#383103ff] text-transparent bg-clip-text text-[3.4vw] moire not-italic">
+        <p className="bg-gradient-to-b from-[#ffe600] via-[#a89916]  to-[#0c0b00] text-transparent bg-clip-text text-[3.4vw] moire not-italic">
           {t("global.draw")}
         </p>
         <p className="bg-white text-transparent bg-clip-text text-[3.4vw] moire not-italic">

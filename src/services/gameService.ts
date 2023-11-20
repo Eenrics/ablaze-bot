@@ -66,8 +66,12 @@ export const startGame = () => {
     if (showBall.value) {
       hideBallAnimation();
     } else {
-      selectBall(Math.floor(Math.random() * 80) + 1);
-      showBallAnimation();
+      if (selectedBalls.value.length === 20) {
+        stopGame();
+      } else {
+        selectBall(Math.floor(Math.random() * 80) + 1);
+        showBallAnimation();
+      }
     }
   }, 3000);
 };
@@ -83,20 +87,18 @@ export const stopGame = () => {
   }, 3000);
 };
 
-effect(() => {
-  if (selectedBalls.value.length === 20) {
-    stopGame();
-  }
-});
+// effect(() => {
+//   if (selectedBalls.value.length === 20) {
+//     stopGame();
+//   }
+// });
 
 enum GameEngineRouter {
-  INTRO = "/intro",
   GAME = "/game",
   HISTORY = "/history",
-  STAT = "/stat",
 }
 
-const gameEngineRouter = signal<GameEngineRouter>(GameEngineRouter.INTRO);
+const gameEngineRouter = signal<GameEngineRouter>(GameEngineRouter.GAME);
 
 export const GameEngine = () => {
   // SECOND ROUTE
@@ -122,14 +124,14 @@ export const GameEngine = () => {
       setTimeout(() => {
         currentRoute.value = "/";
         display.value = DisplayType.STAT;
-        gameEngineRouter.value = GameEngineRouter.INTRO;
+        gameEngineRouter.value = GameEngineRouter.GAME;
       }, 5000);
     }
   });
 
   // FIRST ROUTE
   effect(() => {
-    if (gameEngineRouter.value === GameEngineRouter.INTRO) {
+    if (gameEngineRouter.value === GameEngineRouter.GAME) {
       setTimer({
         days: 0,
         hours: 0,
