@@ -1,11 +1,10 @@
-import GameDisplay from "../../components/Game/GameDisplay";
-import Jackpot from "../../components/Jackpot";
 import History from "../../components/History";
-import { useLocation, useNavigate } from "react-router-dom";
+import Jackpot from "../../components/Jackpot";
 import { currentRoute } from "../../services/routeService";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-function Game() {
+function HistoryPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,12 +14,14 @@ function Game() {
   }, [currentRoute.value]);
 
   return (
-    <div className="h-[90vh]">
-      <GameDisplay />
+    <>
+      <div>
+        <History />
+      </div>
+
       <Jackpot />
-      <History />
-    </div>
+    </>
   );
 }
 
-export default Game;
+export default HistoryPage;
