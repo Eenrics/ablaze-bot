@@ -108,28 +108,182 @@ The optimized and minified files will be created in the `dist` directory.
 ## File Structure
 
 ```
-├── index.html
 ├── commitlint.config.cjs
+├── dist
+│   ├── assets
+│   │   ├── balls
+│   │   │   ├── glass_container.png
+│   │   │   ├── glass_container.webp
+│   │   │   └── todo.txt
+│   │   ├── fonts
+│   │   │   ├── eurasia.ttf
+│   │   │   ├── goodtime.ttf
+│   │   │   ├── moire-extrabold.woff
+│   │   │   ├── waukegan ldo black.ttf
+│   │   │   └── waukegan ldo bold.ttf
+│   │   ├── Frame.png
+│   │   ├── history.png
+│   │   ├── images
+│   │   │   ├── logo.svg
+│   │   │   ├── marathon-bet.svg
+│   │   │   └── splash.svg
+│   │   ├── index-68ef6dfb.css
+│   │   ├── index-7b3842a3.js
+│   │   ├── keno_logo.png
+│   │   ├── kenologo.png
+│   │   ├── logo.svg
+│   │   ├── marathon-logo.png
+│   │   ├── poster-dd7d7369.png
+│   │   ├── react.svg
+│   │   ├── Screenshot from 2023-08-10 16-40-45.png
+│   │   └── upcomingevents.png
+│   ├── index.html
+│   ├── locales
+│   │   ├── am
+│   │   │   └── translation.json
+│   │   └── en
+│   │       └── translation.json
+│   └── vite.svg
+├── index.html
+├── package.json
+├── package-lock.json
 ├── postcss.config.js
+├── public
+│   ├── assets
+│   │   ├── balls
+│   │   │   ├── glass_container.png
+│   │   │   ├── glass_container.webp
+│   │   │   └── todo.txt
+│   │   ├── fonts
+│   │   │   ├── eurasia.ttf
+│   │   │   ├── goodtime.ttf
+│   │   │   ├── moire-extrabold.woff
+│   │   │   ├── waukegan ldo black.ttf
+│   │   │   └── waukegan ldo bold.ttf
+│   │   ├── Frame.png
+│   │   ├── history.png
+│   │   ├── images
+│   │   │   ├── logo.svg
+│   │   │   ├── marathon-bet.svg
+│   │   │   └── splash.svg
+│   │   ├── keno_logo.png
+│   │   ├── kenologo.png
+│   │   ├── logo.svg
+│   │   ├── marathon-logo.png
+│   │   ├── react.svg
+│   │   ├── Screenshot from 2023-08-10 16-40-45.png
+│   │   └── upcomingevents.png
+│   ├── locales
+│   │   ├── am
+│   │   │   └── translation.json
+│   │   └── en
+│   │       └── translation.json
+│   └── vite.svg
+├── README.md
+├── src
+│   ├── App.tsx
+│   ├── assets
+│   │   ├── balls
+│   │   │   ├── 59.png
+│   │   │   ├── 7.png
+│   │   │   └── todo.txt
+│   │   ├── fonts
+│   │   │   ├── eurasia.ttf
+│   │   │   ├── goodtime.ttf
+│   │   │   ├── moire-extrabold.woff
+│   │   │   ├── waukegan ldo black.ttf
+│   │   │   └── waukegan ldo bold.ttf
+│   │   ├── Frame.png
+│   │   ├── history.png
+│   │   ├── images
+│   │   │   ├── logo.svg
+│   │   │   ├── marathon-bet.svg
+│   │   │   └── splash.svg
+│   │   ├── keno_logo.png
+│   │   ├── kenologo.png
+│   │   ├── loader.png
+│   │   ├── marathon-logo.png
+│   │   ├── poster.png
+│   │   └── react.svg
+│   ├── components
+│   │   ├── BlowAniumation
+│   │   │   ├── animation.tsx
+│   │   │   └── index.tsx
+│   │   ├── ErrorPage
+│   │   │   └── index.tsx
+│   │   ├── Game
+│   │   │   ├── GameBGPattern.tsx
+│   │   │   ├── GameDisplayLeft
+│   │   │   │   ├── GameBoard.tsx
+│   │   │   │   ├── GameFooter.tsx
+│   │   │   │   ├── GameTitle.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── GameDisplayRight
+│   │   │   │   ├── DisplayBallDrawn.tsx
+│   │   │   │   ├── DisplayHitWin.tsx
+│   │   │   │   ├── GameDisplayLive.tsx
+│   │   │   │   ├── GameDisplayStatTimer.tsx
+│   │   │   │   ├── GameDisplayStat.tsx
+│   │   │   │   ├── HitWin.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── JackpotTImer.tsx
+│   │   │   ├── GameDisplay.tsx
+│   │   │   ├── GameHeaderLogo.tsx
+│   │   │   └── GameHeader.tsx
+│   │   ├── History
+│   │   │   ├── HistoryCard.tsx
+│   │   │   └── index.tsx
+│   │   ├── Jackpot
+│   │   │   └── index.tsx
+│   │   └── Jumbotron
+│   │       └── index.tsx
+│   ├── constants
+│   │   └── __test__
+│   ├── context
+│   │   ├── AuthContext.tsx
+│   │   └── __test__
+│   ├── hooks
+│   │   ├── __test__
+│   │   └── UseAuth.tsx
+│   ├── i18n.ts
+│   ├── index.css
+│   ├── layouts
+│   │   ├── GameLayout
+│   │   │   └── index.tsx
+│   │   ├── RootLayout
+│   │   │   └── index.tsx
+│   │   ├── __test__
+│   │   └── UpcomingEventsLayout
+│   │       └── index.tsx
+│   ├── main.tsx
+│   ├── pages
+│   │   ├── BlowAnimation
+│   │   │   └── index.tsx
+│   │   ├── Game
+│   │   │   └── index.tsx
+│   │   ├── History
+│   │   │   └── index.tsx
+│   │   ├── Home
+│   │   │   └── index.tsx
+│   │   └── UpcomingEvents
+│   │       └── index.tsx
+│   ├── services
+│   │   ├── gameService.ts
+│   │   ├── routeService.ts
+│   │   └── timeCounterService.ts
+│   ├── types
+│   │   └── index.d.ts
+│   ├── utils
+│   │   ├── displayGameSignal.ts
+│   │   ├── displayRightSignal.ts
+│   │   ├── formateDate.ts
+│   │   └── __test__
+│   └── vite-env.d.ts
 ├── tailwind.config.js
 ├── tsconfig.json
 ├── tsconfig.node.json
-├── vite.config.ts
-├── package.json
-├── package-lock.json
-├── README.md
-└── src
-    ├── App.tsx
-    ├── index.tsx
-    ├── index.css
-    ├── main.ts
-    ├── assets/
-    ├── constants/
-    ├── context/
-    ├── pages/
-    ├── utils/
-    ├── services/
-    └── components/
+└── vite.config.ts
+
 ```
 
 _Documented by Ablaze Developers_
