@@ -6,7 +6,7 @@ import {
   displayRight,
 } from "../../../utils/displayRightSignal";
 import { useTranslation } from "react-i18next";
-import GameDisplayStatTimer from "./GameDisplayStatTimer";
+//import GameDisplayStatTimer from "./GameDisplayStatTimer";
 
 function GameDisplayStat() {
   const { t } = useTranslation();
@@ -22,19 +22,19 @@ function GameDisplayStat() {
   });
 
   return (
-    <div className="py-3 w-full h-full flex flex-col gap-3 ">
-      <div className="flex gap-3 justify-end">
-        <p className="bg-gradient-to-b from-[#ffe600] via-[#a89916]  to-[#0c0b00] text-transparent bg-clip-text text-[3.4vw] moire not-italic">
+    <div className="py-3 w-full h-full flex flex-col gap-3  ">
+      <div className="flex gap-3 justify-start">
+        <p className="bg-gradient-to-b from-[#ffe600] via-[#a89916]  to-[#0c0b00] text-transparent bg-clip-text text-[6vw] moire not-italic">
           {t("global.draw")}
         </p>
-        <p className="bg-white text-transparent bg-clip-text text-[3.4vw] moire not-italic">
+        <p className="bg-white text-transparent bg-clip-text text-[6vw] moire not-italic">
           80210
         </p>
       </div>
 
-      <div className="flex flex-col w-full items-center">
+      {/* <div className="flex flex-col w-full items-center">
         <GameDisplayStatTimer />
-      </div>
+      </div> */}
       {displayRight.value === DisplayRightType.BALLDRAWN ? (
         <DisplayBallDrawn />
       ) : (
