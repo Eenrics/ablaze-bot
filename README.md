@@ -285,6 +285,57 @@ The optimized and minified files will be created in the `dist` directory.
 └── vite.config.ts
 
 ```
+## Application Architecture
+
+```mermaid
+sequenceDiagram
+    participant client
+    participant bot
+    participant backend
+    participant frontend
+
+    Note right of client: User visits ablaze keno game through telegram bot
+    activate client
+    deactivate client
+    Note right of client: The browser makes get request to the server
+
+    client->>bot: POST {"command":"/start"} https://bot.ablazelabs.com
+    activate bot
+    bot-->>client: 200 {"game-commands":"/watchgame, /palygame"}
+    deactivate bot
+    Note left of bot: The bot server responds with game interaction buttons
+
+    Note right of client: User makes payment to play the game
+    activate client
+    deactivate client
+    Note right of client: bot api receives payment command
+
+    client->>bot: POST https://bot.ablazelabs.com/pay/
+    activate bot
+    deactivate bot
+    activate backend
+    Note left of bot: The bot instantiate payment by interacting with the backend
+    bot-->>backend: POST https://api.ablazelabs.com/pay/ {user-info: {}}
+    Note right of backend: The backend responds with 201 status code if the transaction was successful
+    deactivate backend
+
+    client->>bot: GET https://bot.ablazelabs.com/ {command: '/watchgame'}
+    activate client
+    Note left of client: The user send watch game command
+    deactivate client
+    activate bot
+    Note left of bot: The bot responds with the URI of frontend
+    bot-->>client: SUCCESS https://web.ablazelabs.com/
+    deactivate bot
+    client->>frontend: GET https://web.ablazelabs.com/
+    activate client
+    Note left of client: The user send get request to frontend
+    deactivate client
+    activate frontend
+    Note right of frontend: The server responds with html and css files
+    frontend-->>client: 200 https://www.ablazelabs.com/ {content-type: text/html}
+    deactivate frontend
+```
 
 _Documented by Ablaze Developers_
 
