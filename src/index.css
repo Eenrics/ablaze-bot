@@ -235,3 +235,17 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
 }
+
+/* jackpot slide animation */
+@keyframes slideRightToLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-slide-right-to-left {
+  animation: slideRightToLeft 10s linear infinite; /* Jackpot display animation to 10 sec */
+}
