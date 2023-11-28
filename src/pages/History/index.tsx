@@ -18,7 +18,6 @@ function HistoryPage() {
       <div>
         <History />
       </div>
-
       <Jackpot />
     </>
   );

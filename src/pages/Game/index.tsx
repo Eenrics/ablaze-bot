@@ -1,6 +1,6 @@
 import GameDisplay from "../../components/Game/GameDisplay";
 import Jackpot from "../../components/Jackpot";
-import History from "../../components/History";
+// import History from "../../components/History";
 import { useLocation, useNavigate } from "react-router-dom";
 import { currentRoute } from "../../services/routeService";
 import { useEffect } from "react";
@@ -18,7 +18,7 @@ function Game() {
     <div className="h-[90vh]">
       <GameDisplay />
       <Jackpot />
-      <History />
+      {/* <History /> */}
     </div>
   );
 }

@@ -9,7 +9,7 @@ function GameBoard(props: Props) {
   const { data, winNumbers } = props;
 
   return (
-    <div className="grid grid-cols-10 grid-rows-10 gap-1 w-full max-w-[1000px]">
+    <div className="grid grid-cols-10 grid-rows-10 gap-1 w-full max-w-[1000px] ">
       {data?.map((num, index) => {
         return (
           <motion.div
