@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url(https://db.onlinewebfonts.com/c/c1d7f06445822217e3b0330877a99407?family=MicroFLF-Bold);
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -27,6 +29,15 @@
 
 .moire {
   font-family: "Moire";
+}
+
+@font-face {
+  font-family: "MicroFLF-Bold";
+  src: url("/assets/fonts/MicroFLF-Bold.ttf") format("woff");
+}
+
+.micro {
+  font-family: "MicroFLF-Bold";
 }
 
 @font-face {
@@ -248,4 +259,8 @@ button:focus-visible {
 
 .animate-slide-right-to-left {
   animation: slideRightToLeft 10s linear infinite; /* Jackpot display animation to 10 sec */
+}
+
+.jackpot-drop-shadow {
+  text-shadow: 0px 4px 4px 0px #000000;
 }
