@@ -125,7 +125,7 @@ export const GameEngine = () => {
         currentRoute.value = "/";
         display.value = DisplayType.STAT;
         gameEngineRouter.value = GameEngineRouter.GAME;
-      }, 5000);
+      }, 10000);
     }
   });
 
