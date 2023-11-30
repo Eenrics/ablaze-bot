@@ -3,6 +3,7 @@ import History from "../../components/History";
 import { currentRoute } from "../../services/routeService";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+//import JackpotDisplay from "../../components/Game/GameDisplayLeft/JackpotDisplay";
 
 function HistoryPage() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ function HistoryPage() {
   return (
     <div className=" mt-14">
       <History />
+      {/* <JackpotDisplay/> */}
     </div>
   );
 }

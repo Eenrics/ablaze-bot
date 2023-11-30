@@ -2,13 +2,14 @@
 
 import { motion } from "framer-motion";
 import HistoryCard from "./HistoryCard";
+import JackpotDisplay from "../Game/GameDisplayLeft/JackpotDisplay";
 //import { DisplayType, display } from "../../utils/displayGameSignal";
 
 function History() {
   // const { t } = useTranslation();
 
   return (
-    <div>
+    <div className="grid gap-6">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -27,6 +28,7 @@ function History() {
         <HistoryCard gameId="70493" />
         {/* <p className="text-black">{t("history.placeholder")}</p> */}
       </motion.div>
+      <JackpotDisplay />
     </div>
   );
 }
