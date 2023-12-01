@@ -5,7 +5,7 @@ function GameStatusTitle() {
   return (
     <div className="flex justify-center items-center ">
       <div className="flex flex-col items-center">
-        <p className="status-timer">BET</p>
+        <p className="status-timer">BETS</p>
         <p className="draw-number">CLOSED</p>
       </div>
     </div>

@@ -293,7 +293,7 @@ button:focus-visible {
 
 .status-timer {
   text-align: center;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.42);
+  /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.42); */
   font-family: "MicroFLF-Bold";
   font-size: 50px;
   font-style: normal;
@@ -309,7 +309,7 @@ button:focus-visible {
 /* Game status title  */
 
 .status-title {
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.42);
+  /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.42); */
   font-family: "MicroFLF-Bold";
   font-size: 30px;
   font-style: normal;

@@ -6,6 +6,7 @@ import {
   displayRight,
 } from "../../../utils/displayRightSignal";
 import { useTranslation } from "react-i18next";
+import Jackpot from "../../Jackpot";
 //import GameDisplayStatTimer from "./GameDisplayStatTimer";
 
 function GameDisplayStat() {
@@ -36,9 +37,12 @@ function GameDisplayStat() {
         <GameDisplayStatTimer />
       </div> */}
       {displayRight.value === DisplayRightType.BALLDRAWN ? (
-        <DisplayBallDrawn />
+        <Jackpot />
       ) : (
-        <DisplayHitWin />
+        <>
+          <DisplayBallDrawn />
+          <DisplayHitWin />
+        </>
       )}
     </div>
   );
