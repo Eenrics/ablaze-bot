@@ -12,7 +12,7 @@ function GameTitle() {
           80210
         </p> */}
       </div>
-      <div className="bg-[#f6f640]/100  uppercase rounded-[4px] text-[3.4vw] text-black font-semibold px-3 -y-1">
+      <div className="flex justify-center bg-[#f6f640]/100  uppercase rounded-[4px] text-[5.5vw] text-black font-semibold tail-width">
         HEADS
       </div>
     </div>

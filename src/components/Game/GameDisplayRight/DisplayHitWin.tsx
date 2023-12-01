@@ -8,17 +8,17 @@ function DisplayHitWin() {
       {/* <h3 className="text-[#EB0908] font-extrabold text-[5vw]">
         {t("global.pick", { number: 7 })}
       </h3> */}
-      <div className="w-full">
+      <div className="w-full mx-2 flex flex-col gap-2">
         <div className="grid grid-cols-2 w-full">
-          <h4 className="text-[#FFB800] font-extrabold text-center text-[4vw]">
+          <h4 className="text-[#FFB800] font-extrabold text-center text-[5vw] ">
             {t("game.hits")}
           </h4>
-          <h4 className="text-[#FFB800] font-extrabold text-center text-[4vw]">
+          <h4 className="text-[#FFB800] font-extrabold text-center text-[5vw]">
             {t("game.win")}
           </h4>
         </div>
 
-        <HitWin hit={"0"} win={"-"} />
+        <HitWin hit={"0"} win={"0"} />
         <HitWin hit={"4"} win={"6"} />
         <HitWin hit={"5"} win={"58"} />
         <HitWin hit={"6"} win={"80"} />

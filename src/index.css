@@ -332,3 +332,15 @@ button:focus-visible {
   font-weight: 700;
   line-height: normal;
 }
+
+.bar-size {
+  font-size: 17.1px;
+}
+
+.tail-width {
+  width: 100px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  /* background: linear-gradient(180deg, #A51105 -29.85%, #B40E01 133.88%); */
+}

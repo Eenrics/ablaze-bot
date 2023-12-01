@@ -1,10 +1,11 @@
-import Jackpot from "../../components/Jackpot";
+// import Jackpot from "../../components/Jackpot";
 import Animation from "../../components/BlowAniumation/animation";
 import "../../index.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { currentRoute } from "../../services/routeService";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
+import BlowMachine from "./BlowMachine";
 
 function BlowAnimation() {
   const navigate = useNavigate();
@@ -26,8 +27,8 @@ function BlowAnimation() {
       >
         <Animation />
       </motion.div>
-
-      <Jackpot />
+      {/* <Jackpot /> */}
+      <BlowMachine />
     </AnimatePresence>
   );
 }
