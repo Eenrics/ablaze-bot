@@ -285,6 +285,7 @@ The optimized and minified files will be created in the `dist` directory.
 └── vite.config.ts
 
 ```
+
 ## Application Architecture
 
 ```mermaid

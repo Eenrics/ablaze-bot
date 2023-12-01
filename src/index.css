@@ -30,6 +30,15 @@
 }
 
 @font-face {
+  font-family: "MicroFLF-Bold";
+  src: url("/assets/fonts/MicroFLF-Bold.ttf") format("woff");
+}
+
+.micro {
+  font-family: "MicroFLF-Bold";
+}
+
+@font-face {
   font-family: "Good Time";
   src: url("@assets/fonts/goodtime.ttf") format("truetype");
 }
@@ -248,4 +257,90 @@ button:focus-visible {
 
 .animate-slide-right-to-left {
   animation: slideRightToLeft 10s linear infinite; /* Jackpot display animation to 10 sec */
+}
+
+.jackpot-drop-shadow {
+  text-shadow: 0px 4px 4px 0px #000000;
+}
+
+.jackpot-win {
+  font-family: "MicroFLF-Bold";
+  color: #fff;
+  text-align: center;
+  text-shadow:
+    3px 0px 0px #ffe600,
+    2px 2px 3px rgba(0, 0, 0, 0.45),
+    0px 4px 104px rgba(0, 0, 0, 0.25);
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+}
+
+.relative {
+  position: relative;
+}
+
+.jackpot-win {
+  position: absolute;
+  top: 30;
+  left: 50%;
+  transform: translateX(-50%);
+  /* padding: 5px;  */
+}
+
+/* Game status timer  */
+
+.status-timer {
+  text-align: center;
+  /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.42); */
+  font-family: "MicroFLF-Bold";
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  background: linear-gradient(181deg, #ffe600 52.5%, #000 133.2%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* Game status title  */
+
+.status-title {
+  /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.42); */
+  font-family: "MicroFLF-Bold";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background: linear-gradient(180deg, #ffe600 46.3%, #000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Game draw number  */
+
+.draw-number {
+  color: #fff;
+  text-shadow: 0px 4px 14px rgba(0, 0, 0, 0.63);
+  font-family: "MicroFLF-Bold";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.bar-size {
+  font-size: 17.1px;
+}
+
+.tail-width {
+  width: 100px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  /* background: linear-gradient(180deg, #A51105 -29.85%, #B40E01 133.88%); */
 }
