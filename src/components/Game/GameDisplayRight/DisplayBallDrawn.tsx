@@ -7,7 +7,7 @@ function DisplayBallDrawn() {
       <p className="text-center font-extrabold text-[4.5vw] uppercase">
         <span className="text-[#FFE600] micro">20</span>{" "}
         {t("game.balls_drawn_from")}{" "}
-        <span className="text-[#ffffff] micro">80</span>
+        <span className="text-[#FFE600] micro">80</span>
       </p>
     </div>
   );
