@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import HistoryCard from "./HistoryCard";
 import JackpotDisplay from "../Game/GameDisplayLeft/JackpotDisplay";
+import Jackpot from "../Jackpot";
 //import { DisplayType, display } from "../../utils/displayGameSignal";
 
 function History() {
@@ -29,6 +30,7 @@ function History() {
         {/* <p className="text-black">{t("history.placeholder")}</p> */}
       </motion.div>
       <JackpotDisplay />
+      <Jackpot />
     </div>
   );
 }
