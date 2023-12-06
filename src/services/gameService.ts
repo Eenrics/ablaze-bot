@@ -23,7 +23,7 @@ enum GameStatus {
   STOPPED = "stopped",
 }
 
-const gameStatus = signal<GameStatus>(GameStatus.STOPPED);
+const gameStatus = signal<GameStatus>(GameStatus.RUNNING);
 
 const animationStatus = signal<AnimationStatus>(AnimationStatus.STOPPED);
 
@@ -135,8 +135,8 @@ export const GameEngine = () => {
       setTimer({
         days: 0,
         hours: 0,
-        minutes: 2,
-        seconds: 0,
+        minutes: 0,
+        seconds: 10,
       });
       display.value = DisplayType.STAT;
       startTimer();
