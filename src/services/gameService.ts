@@ -14,6 +14,9 @@ const totalBallSelectedCount = signal(0);
 export const selectedBalls = signal<number[]>([]);
 export const selectedBall = signal<number | undefined>(undefined);
 export const showBall = signal(false);
+export const heads = signal(false);
+export const tails = signal(false);
+export const equal = signal(false);
 
 enum AnimationStatus {
   RUNNING = "running",
@@ -211,6 +214,9 @@ export const GameEngine = () => {
       setTimeout(() => {
         currentRoute.value = "/";
         display.value = DisplayType.LIVE;
+        tails.value = false;
+        heads.value = false;
+        equal.value = false;
         startGame();
         gameEngineRouter.value = GameEngineRouter.HISTORY;
       }, 5000);
@@ -237,12 +243,39 @@ export const GameEngine = () => {
       setTimer({
         days: 0,
         hours: 0,
-        minutes: 1,
-        seconds: 0,
+        minutes: 0,
+        seconds: 5,
       });
       display.value = DisplayType.STAT;
       startTimer();
       nextRoute.value = "#setToLIVE";
+    }
+  });
+
+  effect(() => {
+    let head = 0;
+    let tail = 0;
+    if (selectedBalls.value.length > 0) {
+      selectedBalls.value.map((num) => {
+        if (num < 40) {
+          head++;
+        } else {
+          tail++;
+        }
+      });
+      if (head > tail) {
+        heads.value = true;
+        tails.value = false;
+        equal.value = false;
+      } else if (head == tail) {
+        equal.value = true;
+        heads.value = false;
+        tails.value = false;
+      } else {
+        tails.value = true;
+        heads.value = false;
+        equal.value = false;
+      }
     }
   });
 };

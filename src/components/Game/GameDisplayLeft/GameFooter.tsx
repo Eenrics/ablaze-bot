@@ -1,6 +1,7 @@
 // import GameDisplayStat from "../GameDisplayRight/GameDisplayStat";
 
 import { useTranslation } from "react-i18next";
+import { equal, tails } from "../../../services/gameService";
 
 function GameFooter() {
   const { t } = useTranslation();
@@ -16,8 +17,16 @@ function GameFooter() {
       </div>
       <div className="py-[1px]">
         {/* <GameDisplayStat/> */}
-        <div className="flex justify-center items-center bg-[#ffa640]/100 uppercase rounded-[4px] text-[3.5vw] text-black font-semibold px-3 py-[1px]">
-          TAILS
+        <div
+          className={`flex justify-center items-center ${
+            tails.value
+              ? "bg-[#ffa640]/100"
+              : equal.value
+              ? "bg-[#C6D6D6]"
+              : "bg-[#a51205e5]"
+          }  uppercase rounded-[4px] text-[3.5vw] text-black font-semibold px-2 h-[2.5vh] min-w-[8vh]  py-[1px]`}
+        >
+          {tails.value ? " TAILS" : equal.value ? "Equal" : " "}
         </div>
       </div>
     </div>
