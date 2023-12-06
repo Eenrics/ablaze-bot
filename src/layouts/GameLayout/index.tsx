@@ -7,7 +7,7 @@ import JackpotDisplay from "../../components/Game/GameDisplayLeft/JackpotDisplay
 
 export default function GameLayout() {
   return (
-    <div className="game-layout h-full w-full">
+    <div className="game-layout h-full w-full overflow-hidden">
       <ScrollRestoration />
       <GameBGPattern />
 

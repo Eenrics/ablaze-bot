@@ -5,6 +5,4 @@ export enum DisplayRightType {
   BALLDRAWN = 1,
 }
 
-export const displayRight = signal<DisplayRightType>(
-  DisplayRightType.BALLDRAWN,
-);
+export const displayRight = signal<DisplayRightType>(DisplayRightType.HITWIN);
