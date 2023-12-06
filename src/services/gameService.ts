@@ -168,7 +168,7 @@ export const startGame = () => {
     if (showBall.value) {
       hideBallAnimation();
     } else {
-      if (selectedBalls.value.length === 2) {
+      if (selectedBalls.value.length === 20) {
         stopGame();
       } else {
         selectBall(Math.floor(Math.random() * 80) + 1);
@@ -237,8 +237,8 @@ export const GameEngine = () => {
       setTimer({
         days: 0,
         hours: 0,
-        minutes: 0,
-        seconds: 5,
+        minutes: 1,
+        seconds: 0,
       });
       display.value = DisplayType.STAT;
       startTimer();
