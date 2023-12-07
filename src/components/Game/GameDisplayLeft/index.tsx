@@ -12,7 +12,7 @@ function GameDisplayLeft() {
   return (
     <div className="w-full col-span-10 flex flex-col gap-2 px-2  inset-shadow">
       {/* <JackpotDisplay /> */}
-      <div className=" grid grid-cols-10">
+      <div className=" grid grid-cols-10 ">
         <div
           className={
             display.value === DisplayType.LIVE
