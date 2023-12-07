@@ -17,7 +17,7 @@ function Game() {
   }, [currentRoute.value]);
 
   return (
-    <div className="h-[90vh] w-full flex flex-col border-[2px] border-red-800/20">
+    <div className=" w-full flex flex-col border-[2px] border-red-800/20">
       <GameDisplay />
 
       {/* <History /> */}

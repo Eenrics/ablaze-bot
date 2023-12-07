@@ -10,24 +10,27 @@ const data = Array.from({ length: 80 }, (_, index) => index + 1);
 
 function GameDisplayLeft() {
   return (
-    <div className="w-full h-full col-span-10 flex flex-col gap-2 px-2 py-3">
-      <GameTitle />
-      {/* <JackpotDisplay/> */}
+    <div className="w-full col-span-10 flex flex-col gap-2 px-2  inset-shadow">
+      {/* <JackpotDisplay /> */}
       <div className=" grid grid-cols-10">
         <div
           className={
-            display.value === DisplayType.LIVE ? "col-span-7" : "col-span-10 "
+            display.value === DisplayType.LIVE
+              ? "col-span-6 space-y-3"
+              : "col-span-10  "
           }
         >
+          <GameTitle />
+
           <GameBoard data={data} winNumbers={selectedBalls.value} />
+          <GameFooter />
         </div>
         {display.value === DisplayType.LIVE && (
-          <div className="col-span-3">
+          <div className="col-span-4">
             <GameDisplayLive />
           </div>
         )}
       </div>
-      <GameFooter />
     </div>
   );
 }

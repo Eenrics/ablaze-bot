@@ -2,33 +2,28 @@
 
 import { motion } from "framer-motion";
 import HistoryCard from "./HistoryCard";
-import JackpotDisplay from "../Game/GameDisplayLeft/JackpotDisplay";
 import Jackpot from "../Jackpot";
 import WinnerDisplay from "../Game/GameDisplayRight/WinnerDisplay";
-//import { DisplayType, display } from "../../utils/displayGameSignal";
+import JackpotDisplay from "../Game/GameDisplayLeft/JackpotDisplay";
 
 function History() {
-  // const { t } = useTranslation();
-
+  const gameNum = ["80307", "80306", "80305"];
   return (
-    <div className="grid gap-6">
+    <div className="grid ">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
-        className="w-full bg-gradient-to-r from-[#920C02] via-[#db0f00] to-[#920C02] h-[30vh] p-2 flex flex-col justify-center items-center"
+        className="w-full pl-2 flex flex-col justify-start mb-2 "
       >
-        <HistoryCard gameId="80307" />
-        <HistoryCard gameId="80308" />
-        <HistoryCard gameId="80309" />
-        <HistoryCard gameId="80393" />
-        <HistoryCard gameId="80493" />
-        <HistoryCard gameId="70307" />
-        <HistoryCard gameId="70307" />
-        <HistoryCard gameId="70309" />
-        <HistoryCard gameId="70393" />
-        <HistoryCard gameId="70493" />
-        {/* <p className="text-black">{t("history.placeholder")}</p> */}
+        {gameNum.map((win, index) => {
+          return (
+            <div className="gap-2 mb-2" key={index}>
+              <p className="ml-3 text-[3.7vw] font-bold">{win}</p>
+              <HistoryCard />
+            </div>
+          );
+        })}
       </motion.div>
       <JackpotDisplay />
       <Jackpot />

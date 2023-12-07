@@ -1,19 +1,19 @@
-//import { useTranslation } from "react-i18next";
+import { equal, heads } from "../../../services/gameService";
 
 function GameTitle() {
-  //const { t } = useTranslation();
+  console.log({ h: heads.value });
   return (
-    <div className="flex justify-between ">
-      <div className="flex gap-3">
-        {/* <p className="bg-gradient-to-b from-[#ffe600] via-[#a89916]  to-[#0c0b00] text-transparent bg-clip-text text-[3.4vw] moire not-italic">
-          {t("global.draw")}
-        </p>
-        <p className="bg-white text-transparent bg-clip-text text-[3.4vw] moire not-italic">
-          80210
-        </p> */}
-      </div>
-      <div className="flex justify-center bg-[#f6f640]/100  uppercase rounded-[4px] text-[5.5vw] text-black font-semibold tail-width">
-        HEADS
+    <div className="flex justify-end items-center py-[1px]">
+      <div
+        className={`flex justify-center items-center ${
+          heads.value
+            ? "bg-[#f6f640]/100"
+            : equal.value
+            ? "bg-[#C6D6D6]"
+            : "bg-[#a51205e5]"
+        }  uppercase rounded-[4px] text-[3.5vw] text-black font-semibold px-2 h-[2.5vh] min-w-[8vh]  py-[1px]`}
+      >
+        {heads.value ? "HEADS" : equal.value ? "Equal" : " "}
       </div>
     </div>
   );

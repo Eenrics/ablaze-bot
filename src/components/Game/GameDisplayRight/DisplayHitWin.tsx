@@ -1,13 +1,12 @@
+import { BetoddToDisplay, dIndex } from "../../../services/gameService";
 import HitWin from "./HitWin";
 import { useTranslation } from "react-i18next";
 
 function DisplayHitWin() {
   const { t } = useTranslation();
+
   return (
     <div className="flex flex-col items-center w-5/6 mx-auto">
-      {/* <h3 className="text-[#EB0908] font-extrabold text-[5vw]">
-        {t("global.pick", { number: 7 })}
-      </h3> */}
       <div className="w-full mx-2 flex flex-col gap-2">
         <div className="grid grid-cols-2 w-full">
           <h4 className="text-[#FFB800] font-extrabold text-center text-[5vw] ">
@@ -18,10 +17,13 @@ function DisplayHitWin() {
           </h4>
         </div>
 
-        <HitWin hit={"0"} win={"0"} />
-        <HitWin hit={"4"} win={"6"} />
-        <HitWin hit={"5"} win={"58"} />
-        <HitWin hit={"6"} win={"80"} />
+        {BetoddToDisplay[dIndex.value]
+          .sort((a, b) => b.num - a.num)
+          .map((hitWin, index) => {
+            return (
+              <HitWin hit={`${hitWin.num}`} win={`${hitWin.odd}`} key={index} />
+            );
+          })}
       </div>
     </div>
   );

@@ -1,4 +1,8 @@
 import { motion } from "framer-motion";
+import {
+  DisplayRightType,
+  displayRight,
+} from "../../../utils/displayRightSignal";
 
 interface Props {
   data: Array<number>;
@@ -9,7 +13,11 @@ function GameBoard(props: Props) {
   const { data, winNumbers } = props;
 
   return (
-    <div className="grid grid-cols-10 grid-rows-10 gap-1 w-full max-w-[1000px] ">
+    <div
+      className={`grid grid-cols-10 grid-rows-10 gap-1 w-full max-w-[1000px] ${
+        displayRight.value === DisplayRightType.HITWIN && "p-4"
+      }`}
+    >
       {data?.map((num, index) => {
         return (
           <motion.div
@@ -34,7 +42,7 @@ function GameBoard(props: Props) {
                 } rounded-[1vw]`}
               >
                 <p
-                  className={`eurasia text-center text-[4vw] ${
+                  className={`eurasia text-center text-[3vw] ${
                     winNumbers?.includes(num)
                       ? "text-black shadow-text"
                       : "text-white/20"

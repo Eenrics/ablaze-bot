@@ -1,6 +1,5 @@
 import { computed, effect, signal } from "@preact/signals-react";
 import { currentRoute, nextRoute } from "./routeService";
-import { display, DisplayType } from "../utils/displayGameSignal";
 
 export const days = signal<number>(0);
 export const hours = signal<number>(0);
@@ -82,8 +81,8 @@ effect(() => {
               timerStatus.value = TimerStatus.TIMEOUT;
               clearInterval(interval);
               if (nextRoute.value?.startsWith("#setToLIVE")) {
-                display.value = DisplayType.LIVE;
-                nextRoute.value = "";
+                // display.value = DisplayType.LIVE;
+                // nextRoute.value = "";
               } else {
                 currentRoute.value = nextRoute.value;
                 nextRoute.value = "";
