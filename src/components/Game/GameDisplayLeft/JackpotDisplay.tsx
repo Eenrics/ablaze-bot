@@ -6,7 +6,7 @@ import {
 const JackpotDisplay = () => {
   return (
     <div className="jackpot-display">
-      <div className="h-8 bg-[#EAAC00] shadow-lg flex items-center text-gray-800 font-bold micro bar-size w-[120%]">
+      <div className="h-8 bg-[#EAAC00] shadow-lg flex items-center text-gray-800 font-bold micro bar-size w-[140%]">
         {minutesDisplay.value === "00" && secondsDisplay.value === "00" ? (
           <span className="text-textSecondary animate-slide-right-to-left  micro  [text-shadow:0px_2px_2px_#000] ">
             PLAY KENO * TRY YOUR LUCK * PLAY KENO

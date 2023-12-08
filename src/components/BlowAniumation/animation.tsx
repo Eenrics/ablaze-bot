@@ -150,8 +150,8 @@ const Animation = () => {
       addRect({
         x: cx2,
         y: cy2,
-        w: (150 / 1000) * m,
-        h: (150 / 1000) * m,
+        w: (220 / 1000) * m,
+        h: (220 / 1000) * m,
         options: {
           angle: angle2,
           isStatic: true,
