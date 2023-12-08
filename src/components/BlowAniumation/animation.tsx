@@ -34,7 +34,10 @@ const Animation = () => {
     });
 
     const balls: Body[] = [];
-    const ballImagePaths: string[] = ["src/assets/balls/7.png"];
+    const ballImagePaths: string[] = [
+      "/assets/balls/7.png",
+      "/assets/balls/59.png",
+    ];
 
     const createBall = () => {
       const ball = Bodies.circle(
