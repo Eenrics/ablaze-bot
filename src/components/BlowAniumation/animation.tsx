@@ -10,9 +10,9 @@ import Matter, {
 } from "matter-js";
 
 const BALLS_COUNT = 80;
-const BALL_RADIUS = 9;
-const CANVAS_WIDTH = 110;
-const CANVAS_HEIGHT = 110;
+const BALL_RADIUS = 7;
+const CANVAS_WIDTH = 450;
+const CANVAS_HEIGHT = 450;
 
 const Animation = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -34,22 +34,19 @@ const Animation = () => {
     });
 
     const balls: Body[] = [];
-    const ballImagePaths: string[] = [
-      "src/assets/balls/59.png",
-      "src/assets/balls/7.png",
-    ];
+    const ballImagePaths: string[] = ["src/assets/balls/7.png"];
 
     const createBall = () => {
       const ball = Bodies.circle(
-        render.canvas.width / 2 - BALL_RADIUS,
-        render.canvas.height / 2 - 2 * BALL_RADIUS,
+        render.canvas.width / 3 - BALL_RADIUS,
+        render.canvas.height / 3 - 3 * BALL_RADIUS,
         BALL_RADIUS,
         {
           restitution: 0.9,
           render: {
             sprite: {
-              xScale: 0.009,
-              yScale: 0.007,
+              xScale: 0.05,
+              yScale: 0.05,
               texture:
                 ballImagePaths[
                   Math.round(Math.random() * (ballImagePaths.length - 1))
@@ -118,8 +115,8 @@ const Animation = () => {
     const addRect = ({
       x = 0,
       y = 0,
-      w = 10,
-      h = 10,
+      w = 30,
+      h = 30,
       options = {},
     }: {
       x?: number;
@@ -150,12 +147,12 @@ const Animation = () => {
       addRect({
         x: cx2,
         y: cy2,
-        w: (50 / 1000) * m,
+        w: (200 / 1000) * m,
         h: (200 / 1000) * m,
         options: {
           angle: angle2,
           isStatic: true,
-          density: 1,
+          density: 10,
           render: {
             fillStyle: "transparent",
             strokeStyle: "transparent",

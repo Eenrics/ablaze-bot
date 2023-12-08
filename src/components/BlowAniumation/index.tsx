@@ -1,4 +1,5 @@
 import Animation from "./animation";
+
 const BlowAnimation = () => {
   return (
     <div>

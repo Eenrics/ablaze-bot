@@ -2,16 +2,25 @@
 
 import { useTranslation } from "react-i18next";
 import { equal, tails } from "../../../services/gameService";
+import { DisplayType, display } from "../../../utils/displayGameSignal";
 
 function GameFooter() {
   const { t } = useTranslation();
   return (
     <div className="flex w-full justify-between items-center">
       <div className="flex">
-        <p className="bg-gradient-to-b from-[#ffe600] via-[#a89916]  to-[#0c0b00] text-transparent bg-clip-text text-[3vw] moire not-italic">
+        <p
+          className={`bg-gradient-to-b from-[#ffe600] via-[#a89916]  to-[#0c0b00] text-transparent bg-clip-text moire not-italic ${
+            display.value === DisplayType.LIVE ? "text-[3vw]" : "text-[5vw]"
+          }`}
+        >
           {t("global.draw")}
         </p>
-        <p className="bg-white text-transparent bg-clip-text text-[3vw] moire not-italic">
+        <p
+          className={`bg-white text-transparent bg-clip-text moire not-italic ${
+            display.value === DisplayType.LIVE ? "text-[3vw]" : "text-[5vw]"
+          }`}
+        >
           80210
         </p>
       </div>

@@ -192,12 +192,6 @@ export const stopGame = () => {
   }, 3000);
 };
 
-// effect(() => {
-//   if (selectedBalls.value.length === 20) {
-//     stopGame();
-//   }
-// });
-
 enum GameEngineRouter {
   GAME = "/game",
   HISTORY = "/history",
@@ -243,10 +237,11 @@ export const GameEngine = () => {
       setTimer({
         days: 0,
         hours: 0,
-        minutes: 0,
-        seconds: 5,
+        minutes: 1,
+        seconds: 0,
       });
       display.value = DisplayType.STAT;
+      displayRight.value = DisplayRightType.HITWIN;
       startTimer();
       nextRoute.value = "#setToLIVE";
     }
