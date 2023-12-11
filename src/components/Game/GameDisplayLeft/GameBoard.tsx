@@ -1,8 +1,5 @@
 import { motion } from "framer-motion";
-import {
-  DisplayRightType,
-  displayRight,
-} from "../../../utils/displayRightSignal";
+import { DisplayType, display } from "../../../utils/displayGameSignal";
 
 interface Props {
   data: Array<number>;
@@ -14,9 +11,7 @@ function GameBoard(props: Props) {
 
   return (
     <div
-      className={`grid grid-cols-10 grid-rows-10 gap-1 w-full max-w-[1000px] ${
-        displayRight.value === DisplayRightType.HITWIN && "p-4"
-      }`}
+      className={`grid grid-cols-10 grid-rows-10 gap-1 w-full py-1 max-w-[1000px] `}
     >
       {data?.map((num, index) => {
         return (
@@ -30,19 +25,23 @@ function GameBoard(props: Props) {
             }`}
           >
             <div
-              className={`cursor-default w-full h-full flex justify-center items-center rounded-[12px]`}
+              className={`cursor-default w-full h-full flex justify-center items-center rounded-[15px]`}
             >
               <div
-                className={`font-semibold aspect-square flex w-full h-full justify-center items-center ${
+                className={`font-semibold aspect-square  shadow-sm flex w-full h-full justify-center items-center  ${
                   winNumbers?.includes(num)
                     ? num > 40
                       ? "bg-[#ffa640]/100"
                       : "bg-[#f6f640]/100"
                     : "bg-gradient-to-b from-[#B317001f] to-[#6305009f]"
-                } rounded-[1vw]`}
+                } ${
+                  display.value === DisplayType.LIVE
+                    ? "rounded-[4px]"
+                    : "rounded-[8px]"
+                }`}
               >
                 <p
-                  className={`eurasia text-center text-[3vw] ${
+                  className={`eurasia text-[3vw]  ${
                     winNumbers?.includes(num)
                       ? "text-black shadow-text"
                       : "text-white/20"

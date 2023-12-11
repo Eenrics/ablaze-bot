@@ -19,6 +19,7 @@ import { useEffect } from "react";
 import UpcomingEventsLayout from "./layouts/UpcomingEventsLayout";
 import UpcomingEvents from "./pages/UpcomingEvents";
 import { GameEngine } from "./services/gameService";
+import GameIntroLayout from "./layouts/GameIntroLayout";
 
 const tele = window.Telegram.WebApp;
 
@@ -28,8 +29,16 @@ const router = createBrowserRouter(
       {/* GAME ROUTES */}
       <Route path="/" element={<GameLayout />} errorElement={<ErrorPage />}>
         <Route index element={<Game />} />
-        <Route path="/intro" element={<BlowAnimation />} />
         <Route path="/history" element={<History />} />
+      </Route>
+
+      {/* INTRO GAME */}
+      <Route
+        path="/intro"
+        element={<GameIntroLayout />}
+        errorElement={<ErrorPage />}
+      >
+        <Route index element={<BlowAnimation />} />
       </Route>
 
       {/* UPCOMING EVENTS ROUTES */}

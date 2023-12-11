@@ -7,7 +7,7 @@ function GameDisplayLive() {
     <div className="w-full ml-2 mx-2 h-full relative flex flex-col gap-3 justify-center items-center bg-transparent from-[#F63308] to-[#EC1100] overflow-hidden">
       <img
         className="scale-[120%] z-20 h-[100%]"
-        src="/assets/balls/Asset_1.svg"
+        src="/assets/balls/Asset_1.png"
         alt=""
       />
       <AnimatePresence>

@@ -238,13 +238,15 @@ button:focus-visible {
 }
 
 .background-container {
-  height: 29vh;
+  height: 100vh;
   width: 100vw;
-  background-image: url("/src/assets/poster.png");
+  background-image: url("/assets/portrait-min.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+
+  /* scale:115%; */
   align-items: center;
   justify-content: center;
 }
