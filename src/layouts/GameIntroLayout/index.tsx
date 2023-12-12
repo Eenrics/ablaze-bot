@@ -3,7 +3,7 @@ import GameHeader from "../../components/Game/GameHeader";
 
 export default function GameIntoLayout() {
   return (
-    <div className={`game-intro-layout w-full  overflow-hidden  `}>
+    <div className={`game-intro-layout w-full overflow-hidden  `}>
       <ScrollRestoration />
 
       <main

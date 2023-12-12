@@ -1,7 +1,6 @@
 import { equal, heads } from "../../../services/gameService";
 
 function GameTitle() {
-  console.log({ h: heads.value });
   return (
     <div className="flex justify-end items-center py-[1px]">
       <div
@@ -13,7 +12,7 @@ function GameTitle() {
             : "bg-[#a51205e5]"
         }  uppercase rounded-[4px] text-[3.5vw] text-black font-semibold px-2 h-[2.5vh] min-w-[8vh]  py-[1px]`}
       >
-        {heads.value ? "HEADS" : equal.value ? "Equal" : " "}
+        {heads.value ? "HEADS" : equal.value ? "Even" : " "}
       </div>
     </div>
   );

@@ -11,6 +11,8 @@ import {
 import { DisplayRightType, displayRight } from "../utils/displayRightSignal";
 
 const totalBallSelectedCount = signal(0);
+export const index = signal(0);
+
 export const selectedBalls = signal<number[]>([]);
 export const selectedBall = signal<number | undefined>(undefined);
 export const showBall = signal(false);
@@ -134,6 +136,7 @@ const animationStatus = signal<AnimationStatus>(AnimationStatus.STOPPED);
 
 export const selectBall = (ballNumber: number) => {
   selectedBall.value = ballNumber;
+  index.value = index.value + 1;
   totalBallSelectedCount.value++;
   selectedBalls.value = [...selectedBalls.value, ballNumber];
 };
@@ -141,6 +144,7 @@ export const selectBall = (ballNumber: number) => {
 export const emptyBalls = () => {
   totalBallSelectedCount.value = 0;
   selectedBalls.value = [];
+  index.value = 0;
   selectedBall.value = undefined;
 };
 
@@ -178,7 +182,7 @@ export const startGame = () => {
         showBallAnimation();
       }
     }
-  }, 3000);
+  }, 1000);
 };
 
 export const stopGame = () => {
@@ -237,8 +241,8 @@ export const GameEngine = () => {
       setTimer({
         days: 0,
         hours: 0,
-        minutes: 1,
-        seconds: 0,
+        minutes: 0,
+        seconds: 50,
       });
       display.value = DisplayType.STAT;
       displayRight.value = DisplayRightType.HITWIN;
