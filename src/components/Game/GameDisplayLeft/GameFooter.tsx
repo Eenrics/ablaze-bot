@@ -10,7 +10,7 @@ function GameFooter() {
     <div className="flex w-full justify-between items-center">
       <div className="flex">
         <p
-          className={`bg-gradient-to-b from-[#ffe600] via-[#a89916]  to-[#0c0b00] text-transparent bg-clip-text moire not-italic ${
+          className={`draw-text text-transparent bg-clip-text moire not-italic ${
             display.value === DisplayType.LIVE ? "text-[3vw]" : "text-[5vw]"
           }`}
         >
@@ -35,7 +35,7 @@ function GameFooter() {
               : "bg-[#a51205e5]"
           }  uppercase rounded-[4px] text-[3.5vw] text-black font-semibold px-2 h-[2.5vh] min-w-[8vh]  py-[1px]`}
         >
-          {tails.value ? " TAILS" : equal.value ? "Equal" : " "}
+          {tails.value ? " TAILS" : equal.value ? "Even" : " "}
         </div>
       </div>
     </div>

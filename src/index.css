@@ -3,16 +3,12 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif, poppins;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  height: 100vh;
-  width: 100vw;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -103,7 +99,13 @@ button:focus-visible {
   animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation-delay: 0.5s;
 }
-
+@font-face {
+  src: url("@assets/fonts/Poppins-Black.ttf") format("truetype");
+  font-family: "Poppins", sans-serif;
+}
+.poppins {
+  font-family: "Poppins";
+}
 @-webkit-keyframes scale-down-center {
   0% {
     -webkit-transform: scale(2);
@@ -260,7 +262,9 @@ button:focus-visible {
     transform: translateX(-100%);
   }
 }
-
+.text-background-color {
+  background: linear-gradient(180.73deg, #ffe600 52.5%, #000000 133.2%);
+}
 .animate-slide-right-to-left {
   animation: slideRightToLeft 10s linear infinite; /* Jackpot display animation to 10 sec */
 }
@@ -270,13 +274,15 @@ button:focus-visible {
 }
 
 .jackpot-win {
-  font-family: "MicroFLF-Bold";
   color: #fff;
   text-align: center;
+  position: absolute;
+  top: 30;
+  left: 50%;
+  transform: translateX(-50%);
   text-shadow:
-    3px 0px 0px #ffe600,
-    2px 2px 3px rgba(0, 0, 0, 0.45),
-    0px 4px 104px rgba(0, 0, 0, 0.25);
+    2px 2px 3px #00000073,
+    2px 0px 0px #ffe6008e;
   font-size: 3rem;
   font-style: normal;
   font-weight: 900;
@@ -287,19 +293,11 @@ button:focus-visible {
   position: relative;
 }
 
-.jackpot-win {
-  position: absolute;
-  top: 30;
-  left: 50%;
-  transform: translateX(-50%);
-  /* padding: 5px;  */
-}
-
 /* Game status timer  */
+/* box-shadow: 0px 4px 4px 0px #0000006B; */
 
 .status-timer {
   text-align: center;
-  /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.42); */
   font-family: "MicroFLF-Bold";
   font-size: 50px;
   font-style: normal;
@@ -307,13 +305,27 @@ button:focus-visible {
   line-height: normal;
   letter-spacing: 0.75px;
   text-transform: uppercase;
-  background: linear-gradient(181deg, #ffe600 52.5%, #000 133.2%);
+  text-shadow: 0px 5px 5px #00000028;
+  background: linear-gradient(180deg, #ffe600 46.5%, #000000 140%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 /* Game status title  */
 
+.draw-text {
+  text-shadow: 0px 4px 4px #0000003d;
+  background: linear-gradient(180deg, #ffe600 46.3%, #000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.keno-text {
+  background: linear-gradient(180deg, #ffe600 46.3%, #000000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .status-title {
   /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.42); */
   font-family: "MicroFLF-Bold";
@@ -321,6 +333,7 @@ button:focus-visible {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  text-shadow: 0px 4px 4px 0px #0000006b;
   background: linear-gradient(180deg, #ffe600 46.3%, #000 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -336,7 +349,6 @@ button:focus-visible {
   font-size: 30px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
 }
 
 .bar-size {

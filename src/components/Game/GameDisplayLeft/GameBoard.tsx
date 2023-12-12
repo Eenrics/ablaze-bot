@@ -27,6 +27,7 @@ function GameBoard(props: Props) {
             <div
               className={`cursor-default w-full h-full flex justify-center items-center rounded-[15px]`}
             >
+              {" "}
               <div
                 className={`font-semibold aspect-square  shadow-sm flex w-full h-full justify-center items-center  ${
                   winNumbers?.includes(num)

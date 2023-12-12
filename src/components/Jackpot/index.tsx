@@ -7,7 +7,7 @@ function Jackpot() {
         className="max-w-full h-[20vh]"
         onError={(e) => console.error("Image failed to load", e)}
       />
-      <span className="jackpot-win">100,000ETB</span>
+      <span className="jackpot-win ">100,000ETB</span>
     </div>
   );
 }

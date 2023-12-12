@@ -1,5 +1,5 @@
 import { Outlet, ScrollRestoration } from "react-router-dom";
-import GameBGPattern from "../../components/Game/GameBGPattern";
+// import GameBGPattern from "../../components/Game/GameBGPattern";
 import GameHeader from "../../components/Game/GameHeader";
 import GameStatusBox from "../../components/Game/GameDisplayLeft/GameSatusBox";
 import JackpotDisplay from "../../components/Game/GameDisplayLeft/JackpotDisplay";
@@ -7,11 +7,9 @@ import JackpotDisplay from "../../components/Game/GameDisplayLeft/JackpotDisplay
 
 export default function GameLayout() {
   return (
-    <div className="game-layout  w-full overflow-hidden">
+    <div className="game-layout w-full min-h-screen overflow-x-hidden bg-gradient-to-r from-[#950B01]  to-[#CE0F00]">
       <ScrollRestoration />
-      <GameBGPattern />
-
-      <main className="h-full w-full">
+      <main className="min-h-full w-full">
         <GameHeader />
         <GameStatusBox />
         <JackpotDisplay />

@@ -1,8 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { showBall } from "../../../services/gameService";
-import { selectedBall } from "../../../services/gameService";
+import { selectedBall, index } from "../../../services/gameService";
 
 function GameDisplayLive() {
+  console.log({ index: index.value });
   return (
     <div className="w-full ml-2 mx-2 h-full relative flex flex-col gap-3 justify-center items-center bg-transparent from-[#F63308] to-[#EC1100] overflow-hidden">
       <img
@@ -10,6 +11,9 @@ function GameDisplayLive() {
         src="/assets/balls/Asset_1.png"
         alt=""
       />
+      <p className="text-[12px] absolute  left-[73%] top-[25%]">
+        {index.value}/20
+      </p>
       <AnimatePresence>
         {showBall.value && (
           <motion.div
