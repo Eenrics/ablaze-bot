@@ -10,7 +10,7 @@ function GameFooter() {
     <div className="flex w-full justify-between items-center">
       <div className="flex">
         <p
-          className={`draw-text text-transparent bg-clip-text moire not-italic ${
+          className={`draw-text text-transparent bg-clip-text pr-1 moire not-italic ${
             display.value === DisplayType.LIVE ? "text-[3vw]" : "text-[5vw]"
           }`}
         >
