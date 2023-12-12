@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif,; */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif, poppins;
   line-height: 1.5;
   font-weight: 400;
 
@@ -100,7 +100,7 @@ button:focus-visible {
   animation-delay: 0.5s;
 }
 @font-face {
-  src: url("/src/assets/fonts/Poppins-ExtraBold.ttf") format("truetype");
+  src: url("@assets/fonts/Poppins-Black.ttf") format("truetype");
   font-family: "Poppins", sans-serif;
 }
 .poppins {
@@ -279,12 +279,10 @@ button:focus-visible {
   position: absolute;
   top: 30;
   left: 50%;
-  font-family: "Poppins";
   transform: translateX(-50%);
   text-shadow:
     2px 2px 3px #00000073,
     2px 0px 0px #ffe6008e;
-  /* ; */
   font-size: 3rem;
   font-style: normal;
   font-weight: 900;
