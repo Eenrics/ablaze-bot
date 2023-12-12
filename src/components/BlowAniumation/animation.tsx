@@ -10,7 +10,7 @@ import Matter, {
 } from "matter-js";
 
 const BALLS_COUNT = 80;
-const BALL_RADIUS = 7;
+const BALL_RADIUS = 5;
 const CANVAS_WIDTH = 450;
 const CANVAS_HEIGHT = 450;
 
@@ -150,8 +150,8 @@ const Animation = () => {
       addRect({
         x: cx2,
         y: cy2,
-        w: (220 / 1000) * m,
-        h: (220 / 1000) * m,
+        w: (270 / 1000) * m,
+        h: (270 / 1000) * m,
         options: {
           angle: angle2,
           isStatic: true,
