@@ -19,7 +19,7 @@ function History() {
         {gameNum.map((win, index) => {
           return (
             <div className="gap-2 mb-2" key={index}>
-              <p className="ml-3 text-[3.7vw] font-bold">{win}</p>
+              <p className="ml-3 text-[3.7vw] font-bold text-white">{win}</p>
               <HistoryCard />
             </div>
           );

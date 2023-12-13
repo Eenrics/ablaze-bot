@@ -7,11 +7,11 @@ function GameDisplayLive() {
   return (
     <div className="w-full ml-2 mx-2 h-full relative flex flex-col gap-3 justify-center items-center bg-transparent from-[#F63308] to-[#EC1100] overflow-hidden">
       <img
-        className="scale-[120%] z-20 h-[100%]"
+        className="scale-[120%] z-20 h-[100%] w-full"
         src="/assets/balls/Asset_1.png"
         alt=""
       />
-      <p className="text-[12px] absolute  left-[73%] top-[25%]">
+      <p className="text-[12px] absolute text-white left-[73%] top-[25%]">
         {index.value}/20
       </p>
       <AnimatePresence>
