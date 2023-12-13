@@ -24,7 +24,7 @@ function GameFooter() {
           80210
         </p>
       </div>
-      <div className="py-[1px]">
+      <div className="">
         {/* <GameDisplayStat/> */}
         <div
           className={`flex justify-center items-center ${
