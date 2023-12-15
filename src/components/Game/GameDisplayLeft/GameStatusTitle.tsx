@@ -4,7 +4,7 @@ function GameStatusTitle() {
   const { t } = useTranslation();
   return (
     <div className="flex justify-between items-center ">
-      <p className="status-title">{t("global.draw")}</p>
+      <p className="status-title pr-1">{t("global.draw")}</p>
       <p className="draw-number">80210</p>
     </div>
   );

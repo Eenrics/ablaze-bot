@@ -242,7 +242,7 @@ export const GameEngine = () => {
         days: 0,
         hours: 0,
         minutes: 0,
-        seconds: 50,
+        seconds: 60,
       });
       display.value = DisplayType.STAT;
       displayRight.value = DisplayRightType.HITWIN;
