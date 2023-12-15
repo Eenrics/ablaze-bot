@@ -3,7 +3,6 @@ import { showBall } from "../../../services/gameService";
 import { selectedBall, index } from "../../../services/gameService";
 
 function GameDisplayLive() {
-  console.log({ index: index.value });
   return (
     <div className="w-full ml-2 mx-2 h-full relative flex flex-col gap-3 justify-center items-center bg-transparent from-[#F63308] to-[#EC1100] overflow-hidden">
       <img

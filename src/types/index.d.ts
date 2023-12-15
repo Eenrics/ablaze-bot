@@ -11,3 +11,7 @@ interface TelegramType {
     ready: () => void;
   };
 }
+export interface HISTORTYPE {
+  daily_id: number;
+  draw: number[];
+}
