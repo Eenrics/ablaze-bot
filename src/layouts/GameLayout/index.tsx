@@ -8,36 +8,34 @@ import {
   GameEngineRouter,
   gameEngineRouter,
   gameId,
+  selectedBalls,
 } from "../../services/gameService";
 import { setTimer, startTimer } from "../../services/timeCounterService";
 import { DisplayRightType, displayRight } from "../../utils/displayRightSignal";
 import { nextRoute } from "../../services/routeService";
 
 export default function GameLayout() {
-  const { data, isLoading, isSuccess } = useGetCurrentGames(
-    display.value === DisplayType.STAT,
-  );
+  const { data, isLoading, isSuccess } = useGetCurrentGames();
+  console.log({ data });
+  console.log({ isLoading });
   if (isSuccess) {
     const oldDate: Date = new Date();
-    const newDateValue: string | undefined = data?.data?.end_time;
-    gameId.value = data?.data?.daily_id;
-    console.log({ pc: new Date(), s: new Date(data?.data?.end_time) });
+    const newDateValue: string | undefined = data?.data?.currentGame?.end_time;
+    gameId.value = data?.data?.currentGame?.daily_id;
+    if (display.value === DisplayType.STAT) {
+      selectedBalls.value = data?.data?.previousGame?.draw;
+    }
     if (newDateValue) {
       const newDate: Date = new Date(newDateValue);
-
-      const min: number = newDate.getMinutes() - oldDate.getMinutes();
-      const sec: number = newDate.getSeconds() - oldDate.getSeconds();
-      // console.log({
-      //   minutes: min > 0 ? min : 0,
-      //   seconds: sec > 0 ? sec : 0,
-      // });
+      const fg = newDate.getTime() - oldDate.getTime();
       if (gameEngineRouter.value === GameEngineRouter.GAME) {
         setTimer({
           days: 0,
           hours: 0,
-          minutes: min > 0 ? min : 0,
-          seconds: sec > 0 ? sec : 0,
+          minutes: new Date(fg).getMinutes(),
+          seconds: new Date(fg).getSeconds(),
         });
+
         display.value = DisplayType.STAT;
         displayRight.value = DisplayRightType.HITWIN;
         startTimer();
@@ -45,6 +43,7 @@ export default function GameLayout() {
       }
     }
   }
+
   return (
     <div className="game-layout w-full min-h-screen overflow-x-hidden bg-gradient-to-r from-[#950B01]  to-[#CE0F00]">
       <ScrollRestoration />
