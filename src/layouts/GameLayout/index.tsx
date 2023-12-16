@@ -32,7 +32,10 @@ export default function GameLayout() {
         setTimer({
           days: 0,
           hours: 0,
-          minutes: new Date(fg).getMinutes(),
+          minutes:
+            new Date(fg).getMinutes() < 10
+              ? new Date(fg).getMinutes()
+              : 57 - new Date(fg).getMinutes(),
           seconds: new Date(fg).getSeconds(),
         });
 
