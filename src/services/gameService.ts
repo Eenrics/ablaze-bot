@@ -6,7 +6,7 @@ import { DisplayRightType, displayRight } from "../utils/displayRightSignal";
 
 const totalBallSelectedCount = signal(0);
 export const index = signal(0);
-
+export const selectedNewBalls = signal<number[]>([]);
 export const selectedBalls = signal<number[]>([]);
 export const selectedBall = signal<number | undefined>(undefined);
 export const showBall = signal(false);
@@ -172,7 +172,7 @@ export const startGame = () => {
       if (selectedBalls.value.length === 20) {
         stopGame();
       } else {
-        selectBall(Math.floor(Math.random() * 80) + 1);
+        selectBall(selectedNewBalls.value[index.value]);
         showBallAnimation();
       }
     }

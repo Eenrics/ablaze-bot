@@ -6,9 +6,8 @@ function HistoryCard({ draw }: DRAWTYPE) {
     <div className="flex items-center  border-white/10">
       <div className="flex flex-row">
         <div className="grid grid-cols-10 px-2 gap-[10px] ">
-          {draw
-            .sort((a: number, b: number) => a - b)
-            .map((history: number, i: number) => {
+          {Array.isArray(draw) &&
+            draw.map((history: number, i: number) => {
               return (
                 <div
                   key={i}

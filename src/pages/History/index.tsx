@@ -1,8 +1,8 @@
+import { useEffect } from "react";
 import History from "../../components/History";
 //import Jackpot from "../../components/Jackpot";
 import { currentRoute } from "../../services/routeService";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 //import JackpotDisplay from "../../components/Game/GameDisplayLeft/JackpotDisplay";
 
 function HistoryPage() {

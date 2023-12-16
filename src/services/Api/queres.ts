@@ -12,13 +12,20 @@ export const useGetCurrentGames = () =>
 
 export const useGetGamesHistory = () => {
   return useQuery({
-    queryKey: ["QUERY_KEYS.useGetHistoryGames"],
+    queryKey: ["useGetHistoryGames"],
     queryFn: getGamesHistory,
   });
 };
-export const useGetDailyGame = (gameId: number) => {
+export const useGetDailyGame = ({
+  gameId,
+  isEnabled,
+}: {
+  gameId: number;
+  isEnabled: boolean;
+}) => {
   return useQuery({
     queryKey: ["QUERY_KEYS.useGetDailyGame"],
     queryFn: () => getDailyGame(gameId),
+    enabled: isEnabled ? true : false,
   });
 };

@@ -1,15 +1,33 @@
 // import { useTranslation } from "react-i18next";
 
-import { motion } from "framer-motion";
-import HistoryCard from "./HistoryCard";
 import Jackpot from "../Jackpot";
 import WinnerDisplay from "../Game/GameDisplayRight/WinnerDisplay";
 import JackpotDisplay from "../Game/GameDisplayLeft/JackpotDisplay";
-import { useGetGamesHistory } from "../../services/Api/queres";
 import { HISTORTYPE } from "../../types/index";
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+import AllHistory from "./AllHistory";
+
 function History() {
-  const { data, isLoading, isSuccess } = useGetGamesHistory();
-  console.log({ history: data });
+  const [historyData, setHistoryData] = useState<HISTORTYPE[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const APP_URL = import.meta.env.VITE_API_URL;
+
+  const getHistoryData = async () => {
+    setIsLoading(true);
+    const response = await axios.get(APP_URL + "get-games");
+    if (response.status === 200) {
+      setHistoryData(response?.data);
+      setIsLoading(false);
+    } else {
+      console.log({ response });
+    }
+  };
+  useEffect(() => {
+    getHistoryData();
+  }, []);
+
   return (
     <>
       {isLoading ? (
@@ -25,34 +43,16 @@ function History() {
         </div>
       ) : (
         <>
-          {isSuccess && (
+          {
             <div className="grid ">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1.5 }}
-                className="w-full pl-2 flex flex-col justify-start mb-2 "
-              >
-                {data?.data?.map((win: HISTORTYPE, index: number) => {
-                  return (
-                    <>
-                      {
-                        <div className="gap-2 mb-2" key={index}>
-                          <p className="ml-3 text-[3.7vw] font-bold text-white">
-                            {win?.daily_id}
-                          </p>
-                          <HistoryCard draw={win?.draw} />
-                        </div>
-                      }
-                    </>
-                  );
-                })}
-              </motion.div>
+              <div className="w-full pl-2 flex flex-col justify-start mb-2 ">
+                <AllHistory data={historyData} />
+              </div>
               <JackpotDisplay />
               <Jackpot />
               <WinnerDisplay />
             </div>
-          )}
+          }
         </>
       )}
     </>

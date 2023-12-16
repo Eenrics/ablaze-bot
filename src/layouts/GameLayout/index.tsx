@@ -9,15 +9,49 @@ import {
   gameEngineRouter,
   gameId,
   selectedBalls,
+  selectedNewBalls,
 } from "../../services/gameService";
-import { setTimer, startTimer } from "../../services/timeCounterService";
+import {
+  minutes,
+  seconds,
+  setTimer,
+  startTimer,
+} from "../../services/timeCounterService";
 import { DisplayRightType, displayRight } from "../../utils/displayRightSignal";
 import { nextRoute } from "../../services/routeService";
+import { useEffect } from "react";
+import axios from "axios";
+import { signal } from "@preact/signals-react";
 
 export default function GameLayout() {
   const { data, isLoading, isSuccess } = useGetCurrentGames();
-  console.log({ data });
-  console.log({ isLoading });
+  const enable = signal(false);
+  const APP_URL = import.meta.env.VITE_API_URL;
+
+  const GetNewGame = async () => {
+    const response = await axios.get(
+      APP_URL + "get-daily-game/" + gameId.value,
+    );
+    console.log({ response });
+    if (response.status === 200) {
+      if (selectedNewBalls.value.length === 0) {
+        selectedNewBalls.value = response?.data?.draw || [];
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (minutes.value === 0 && seconds.value === 10) {
+      if (enable.value === false) {
+        console.log("calling get new game");
+        GetNewGame();
+      } else {
+        enable.value = true;
+      }
+      console.log("fg");
+    }
+  }, [seconds.value]);
+
   if (isSuccess) {
     const oldDate: Date = new Date();
     const newDateValue: string | undefined = data?.data?.currentGame?.end_time;
@@ -34,9 +68,12 @@ export default function GameLayout() {
           hours: 0,
           minutes:
             new Date(fg).getMinutes() < 10
-              ? new Date(fg).getMinutes()
-              : 57 - new Date(fg).getMinutes(),
-          seconds: new Date(fg).getSeconds(),
+              ? new Date(fg).getMinutes() > 0
+                ? new Date(fg).getMinutes()
+                : 0
+              : new Date(fg).getMinutes() - 57,
+          seconds:
+            new Date(fg).getSeconds() > 0 ? new Date(fg).getSeconds() : 0,
         });
 
         display.value = DisplayType.STAT;
