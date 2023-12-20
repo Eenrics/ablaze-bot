@@ -22,11 +22,19 @@ import { nextRoute } from "../../services/routeService";
 import { useEffect } from "react";
 import axios from "axios";
 import { signal } from "@preact/signals-react";
+import { io } from "socket.io-client";
+import { getServerTime, setServerTime } from "../../services/serverTime";
 
 export default function GameLayout() {
   const { data, isLoading, isSuccess } = useGetCurrentGames();
   const enable = signal(false);
   const APP_URL = import.meta.env.VITE_API_URL;
+
+  const socket = io(APP_URL);
+
+  socket.on("timeSync", (val) => {
+    if (val?.now) setServerTime(val?.now);
+  });
 
   const GetNewGame = async () => {
     const response = await axios.get(
@@ -53,7 +61,7 @@ export default function GameLayout() {
   }, [seconds.value]);
 
   if (isSuccess) {
-    const oldDate: Date = new Date();
+    const oldDate: Date = getServerTime();
     const newDateValue: string | undefined = data?.data?.currentGame?.end_time;
     gameId.value = data?.data?.currentGame?.daily_id;
     if (display.value === DisplayType.STAT) {
