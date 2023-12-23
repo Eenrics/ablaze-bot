@@ -25,14 +25,14 @@ import { signal } from "@preact/signals-react";
 import { io } from "socket.io-client";
 import { getServerTime, setServerTime } from "../../services/serverTime";
 
+const APP_URL = import.meta.env.VITE_API_URL;
+const socket = io(APP_URL.split("game")[0]);
+
 export default function GameLayout() {
   const { data, isLoading, isSuccess } = useGetCurrentGames();
   const enable = signal(false);
-  const APP_URL = import.meta.env.VITE_API_URL;
 
-  const socket = io(APP_URL);
-
-  socket.on("timeSync", (val) => {
+  socket.on("timeStamp", (val) => {
     if (val?.now) setServerTime(val?.now);
   });
 
@@ -40,7 +40,6 @@ export default function GameLayout() {
     const response = await axios.get(
       APP_URL + "get-daily-game/" + gameId.value,
     );
-    console.log({ response });
     if (response.status === 200) {
       if (selectedNewBalls.value.length === 0) {
         selectedNewBalls.value = response?.data?.draw || [];
@@ -51,37 +50,29 @@ export default function GameLayout() {
   useEffect(() => {
     if (minutes.value === 0 && seconds.value === 10) {
       if (enable.value === false) {
-        console.log("calling get new game");
         GetNewGame();
       } else {
         enable.value = true;
       }
-      console.log("fg");
     }
   }, [seconds.value]);
 
   if (isSuccess) {
-    const oldDate: Date = getServerTime();
-    const newDateValue: string | undefined = data?.data?.currentGame?.end_time;
+    const currentTime: Date = getServerTime();
+    const endTime: string | undefined = data?.data?.currentGame?.end_time;
     gameId.value = data?.data?.currentGame?.daily_id;
     if (display.value === DisplayType.STAT) {
       selectedBalls.value = data?.data?.previousGame?.draw;
     }
-    if (newDateValue) {
-      const newDate: Date = new Date(newDateValue);
-      const fg = newDate.getTime() - oldDate.getTime();
+    if (endTime) {
+      const newDate: Date = new Date(endTime);
+      const fg = newDate.getTime() - currentTime.getTime();
       if (gameEngineRouter.value === GameEngineRouter.GAME) {
         setTimer({
           days: 0,
           hours: 0,
-          minutes:
-            new Date(fg).getMinutes() < 10
-              ? new Date(fg).getMinutes() > 0
-                ? new Date(fg).getMinutes()
-                : 0
-              : new Date(fg).getMinutes() - 57,
-          seconds:
-            new Date(fg).getSeconds() > 0 ? new Date(fg).getSeconds() : 0,
+          minutes: new Date(fg).getMinutes(),
+          seconds: new Date(fg).getSeconds(),
         });
 
         display.value = DisplayType.STAT;
