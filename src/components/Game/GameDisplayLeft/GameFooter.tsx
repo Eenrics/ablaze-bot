@@ -1,7 +1,7 @@
 // import GameDisplayStat from "../GameDisplayRight/GameDisplayStat";
 
 import { useTranslation } from "react-i18next";
-import { equal, tails } from "../../../services/gameService";
+import { equal, gameId, tails } from "../../../services/gameService";
 import { DisplayType, display } from "../../../utils/displayGameSignal";
 
 function GameFooter() {
@@ -21,10 +21,10 @@ function GameFooter() {
             display.value === DisplayType.LIVE ? "text-[3vw]" : "text-[5vw]"
           }`}
         >
-          80210
+          {gameId.value > 0 ? gameId.value - 1 : gameId.value}
         </p>
       </div>
-      <div className="py-[1px]">
+      <div className="">
         {/* <GameDisplayStat/> */}
         <div
           className={`flex justify-center items-center ${

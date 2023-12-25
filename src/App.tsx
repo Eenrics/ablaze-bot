@@ -15,7 +15,7 @@ import RootLayout from "./layouts/RootLayout";
 import ErrorPage from "./components/ErrorPage";
 import GameLayout from "./layouts/GameLayout";
 import Game from "./pages/Game";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import UpcomingEventsLayout from "./layouts/UpcomingEventsLayout";
 import UpcomingEvents from "./pages/UpcomingEvents";
 import { GameEngine } from "./services/gameService";
@@ -59,7 +59,22 @@ function App() {
     GameEngine();
   }, []);
 
-  return <RouterProvider router={router} />;
+  return (
+    <div className="w-screen h-full flex justify-center items-center">
+      <React.Suspense
+        fallback={
+          <div className="flex items-center justify-center h-full w-full">
+            <div
+              className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+              role="status"
+            />
+          </div>
+        }
+      >
+        <RouterProvider router={router} />
+      </React.Suspense>
+    </div>
+  );
 }
 
 export default App;

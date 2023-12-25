@@ -1,25 +1,19 @@
 import { effect, signal } from "@preact/signals-react";
-import { currentRoute, nextRoute } from "./routeService";
+import { currentRoute } from "./routeService";
 import { display, DisplayType } from "../utils/displayGameSignal";
-import {
-  TimerStatus,
-  seconds,
-  setTimer,
-  startTimer,
-  timerStatus,
-} from "./timeCounterService";
+import { TimerStatus, seconds, timerStatus } from "./timeCounterService";
 import { DisplayRightType, displayRight } from "../utils/displayRightSignal";
 
 const totalBallSelectedCount = signal(0);
 export const index = signal(0);
-
+export const selectedNewBalls = signal<number[]>([]);
 export const selectedBalls = signal<number[]>([]);
 export const selectedBall = signal<number | undefined>(undefined);
 export const showBall = signal(false);
 export const heads = signal(false);
 export const tails = signal(false);
 export const equal = signal(false);
-
+export const gameId = signal(0);
 enum AnimationStatus {
   RUNNING = "running",
   STOPPED = "stopped",
@@ -178,11 +172,11 @@ export const startGame = () => {
       if (selectedBalls.value.length === 20) {
         stopGame();
       } else {
-        selectBall(Math.floor(Math.random() * 80) + 1);
+        selectBall(selectedNewBalls.value[index.value]);
         showBallAnimation();
       }
     }
-  }, 1000);
+  }, 2000);
 };
 
 export const stopGame = () => {
@@ -196,12 +190,12 @@ export const stopGame = () => {
   }, 3000);
 };
 
-enum GameEngineRouter {
+export enum GameEngineRouter {
   GAME = "/game",
   HISTORY = "/history",
 }
 
-const gameEngineRouter = signal<GameEngineRouter>(GameEngineRouter.GAME);
+export const gameEngineRouter = signal<GameEngineRouter>(GameEngineRouter.GAME);
 
 export const GameEngine = () => {
   // SECOND ROUTE
@@ -237,18 +231,18 @@ export const GameEngine = () => {
 
   // FIRST ROUTE
   effect(() => {
-    if (gameEngineRouter.value === GameEngineRouter.GAME) {
-      setTimer({
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 60,
-      });
-      display.value = DisplayType.STAT;
-      displayRight.value = DisplayRightType.HITWIN;
-      startTimer();
-      nextRoute.value = "#setToLIVE";
-    }
+    // if (gameEngineRouter.value === GameEngineRouter.GAME) {
+    //   setTimer({
+    //     days: 0,
+    //     hours: 0,
+    //     minutes: 0,
+    //     seconds: 10,
+    //   });
+    //   display.value = DisplayType.STAT;
+    //   displayRight.value = DisplayRightType.HITWIN;
+    //   startTimer();
+    //   nextRoute.value = "#setToLIVE";
+    // }
   });
 
   effect(() => {
