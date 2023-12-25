@@ -36,7 +36,20 @@ const Animation = () => {
     const balls: Body[] = [];
     const ballImagePaths: string[] = [
       "/assets/balls/7.png",
-      "/assets/balls/59.png",
+      "/assets/balls/80.png",
+      "/assets/balls/1.png",
+      "/assets/balls/5.png",
+      "/assets/balls/9.png",
+      "/assets/balls/13.png",
+      "/assets/balls/15.png",
+      "/assets/balls/16.png",
+      "/assets/balls/24.png",
+      "/assets/balls/29.png",
+      "/assets/balls/45.png",
+      "/assets/balls/54.png",
+      "/assets/balls/62.png",
+      "/assets/balls/71.png",
+      "/assets/balls/75.png",
     ];
 
     const createBall = () => {
