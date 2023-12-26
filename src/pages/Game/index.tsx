@@ -49,8 +49,8 @@ function Game() {
 
   useEffect(() => {
     if (!(location.pathname == currentRoute.value) && isConnected) {
-      // console.log("location :",location.pathname);
-      // console.log("currentroute :",currentRoute.value);
+      console.log("location :", location.pathname);
+      console.log("currentroute :", currentRoute.value);
 
       // console.log("changing route...");
       // console.log("current connected state:",isConnected);
