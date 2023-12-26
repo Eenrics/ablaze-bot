@@ -18,7 +18,7 @@ const resetGame = (isConnected: boolean) => {
     () => {
       if (!isConnected) {
         clearTimeout(reset);
-        window.location.href = location.pathname;
+        // window.location.reload();
       }
     },
     minutes.value * 60 + seconds.value,
@@ -32,27 +32,53 @@ const clearResetGame = () => {
 function Game() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isConnected, setConnected] = useState(false);
+  const [isConnected, setConnected] = useState(true);
 
   socket.on("connect", () => {
-    setConnected((prevIsConnected) => !prevIsConnected);
+    // console.log("CONNECTED!!!!!");
+    setConnected(true);
     clearResetGame();
   });
 
+  // socket.once("connect",()=> window.location.reload())
+
   socket.on("disconnect", () => {
-    setConnected((prevIsConnected) => !prevIsConnected);
+    setConnected(false);
     resetGame(isConnected);
   });
 
   useEffect(() => {
-    if (!(location.pathname == currentRoute.value)) {
+    if (!(location.pathname == currentRoute.value) && isConnected) {
+      // console.log("location :",location.pathname);
+      // console.log("currentroute :",currentRoute.value);
+
+      // console.log("changing route...");
+      // console.log("current connected state:",isConnected);
+
       navigate(currentRoute.value);
     }
+    socket.on("connect", () => {
+      // console.log("CONNECTED!!!!!");
+      setConnected(true);
+      clearResetGame();
+    });
+    socket.on("disconnect", () => {
+      setConnected(false);
+      resetGame(isConnected);
+    });
   }, [currentRoute.value]);
 
   return (
     <div className=" w-full flex flex-col border-[2px] border-red-800/20">
-      <GameDisplay />
+      {!isConnected ? (
+        <p style={{ backgroundColor: "#fff" }}>
+          Please check your internet connection
+        </p>
+      ) : (
+        ""
+      )}
+      {isConnected ? <GameDisplay /> : ""}
+      {/* <GameDisplay /> */}
       {/* <History /> */}
     </div>
   );
