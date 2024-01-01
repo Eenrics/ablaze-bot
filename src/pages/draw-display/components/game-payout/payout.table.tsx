@@ -1,13 +1,12 @@
-import React from 'react'
-import { BETPAYOUTTABLE, PAYOUTINDEX } from '../../../../data/data.source';
+import React from "react";
+import { BETPAYOUTTABLE, PAYOUTINDEX } from "../../../../data/data.source";
 
 function PayoutTable() {
   return (
     <>
       <div className="flex flex-col items-center w-2/3 mx-auto">
         <p className="text-center font-extrabold text-white text-[4.8vw] uppercase">
-          <span className="text-[#FFE600] micro">20</span>{" "}
-          balls drawn from {" "}
+          <span className="text-[#FFE600] micro">20</span> balls drawn from{" "}
           <span className="text-[#FFE600] micro">80</span>
         </p>
       </div>
@@ -26,7 +25,7 @@ function PayoutTable() {
             .sort((a, b) => b.num - a.num)
             .map((hitWin, index) => {
               return (
-                <div className="grid grid-cols-2 w-full">
+                <div className="grid grid-cols-2 w-full" key={index}>
                   <h4 className="text-[#FFFFFF] font-extrabold text-center text-[4vw]">
                     {hitWin.num}
                   </h4>
@@ -40,7 +39,7 @@ function PayoutTable() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default PayoutTable
+export default PayoutTable;

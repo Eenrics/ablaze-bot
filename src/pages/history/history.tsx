@@ -2,11 +2,12 @@ import React from "react";
 import HistoryWidget, { DRAWTYPE } from "./components/history.widget";
 import AdsBanner from "../../components/ads-banner/ads.banner";
 import MainHeader from "../../components/header/main.header";
-import { GameHistory, gameHistory } from "../../data/data.source";
+import { GameHistory, historyDataAtom } from "../../data/data.source";
 import { useAtom } from "jotai";
+
 function History() {
   GameHistory();
-  const [lots] = useAtom(gameHistory);
+  const [lots] = useAtom(historyDataAtom);
   return (
     <div className="game-layout w-full min-h-screen overflow-x-hidden bg-gradient-to-r from-[#950B01]  to-[#CE0F00]">
       <MainHeader />
