@@ -17,7 +17,7 @@ export const HEAD=false;
 export const TAILS=false;
 export const EVEN=false;
 export const CurrentGameID="";
-export const IsDisplayLive=atom(false);
+export const IsDisplayLive=atom(true);
 export const INDEX=atom(2)
 export const PAYOUTINDEX=atom<number>(10);
 export const MINUTE=atom(0)
@@ -86,10 +86,14 @@ export const BETPAYOUTTABLE: Record<number, Record<string, number>[]> = {
       { num: 10, odd: 5000 },
     ],
   };
+const CheckInternet=()=>{
+//TODO  check intenet connection and if tit is ofl;ine call the connecting layout
+
+}
 
 // Timer section
 
-const CurrentGame = async () => {
+export const CurrentGame = async () => {
   const [ID, setGameID] = useAtom(gameID);
   const [history, setHisoricalGame] = useAtom(SELECTEDSPOTS);
   const [end, setEnd] = useAtom(EndTime);
@@ -101,99 +105,87 @@ const CurrentGame = async () => {
 // EndTime.init=response?.data?.currentGame?.end_time;
 setGameID(()=>gameID.init=response?.data?.currentGame?.daily_id,)
 setHisoricalGame(()=>SELECTEDSPOTS.init=response?.data?.previousGame?.draw,)
-// setHisoricalGame(()=>EndTime.init=response?.data?.currentGame?.end_time,)
-// gameID.init=response?.data?.currentGame?.daily_id;
 
-// console.log(EndTime .init  )
-// console.log("==========")
-// console.log(gameID.init   )
 
   }
   return response?.data?.currentGame?.end_time;
 };
-const formatTime = (dateTime: Date | undefined): string => {
-  return dateTime
-    ? dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
-    : 'Not available';
-};
-function countdown(minutes: number, seconds: number, callback: (minutes: number, seconds: number) => void) {
-  let totalSeconds = minutes * 60 + seconds;
 
-  const intervalId = setInterval(() => {
-    // clearInterval(intervalId);
 
-    const displayMinutes = Math.floor(totalSeconds / 60);
-    const displaySeconds = totalSeconds % 60;
 
-   
-    if (callback) {
-    
 
-      callback(displayMinutes, displaySeconds);
-    }
 
-    if (totalSeconds <= 0) {
-      clearInterval(intervalId);
-    } else {
-      totalSeconds--;
-      clearInterval(intervalId);
-    }
-  }, 1000);
-}
-let servertime;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 const fetchServerTime = () => {
+  const [min, setMinutes] = useAtom(MINUTE);
+  const [sec, SetSeconds] = useAtom(SECOND);
   // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>");
-  socket.on("timeStamp", (val) => {
+  socket.on("timeStamp", async (val) => {
     
     if (val?.now) setServerTime(val?.now);
 
 
     // servertime = new Date(val?.now).getTime(); 
-     console.log("###############")
-     console.log(val.minute);
-     console.log(val.second);
+    //  console.log("###############")
+    //  console.log(val.minutes);
+    //  console.log(val.seconds);
     //  MINUTE.init=val?.now
-  
+    setMinutes(()=>MINUTE.init=val.minutes)
+    SetSeconds(()=>SECOND.init=val.seconds)
+    if (MINUTE.init==0 && SECOND.init==10 ){
+     const res=await CurrentGame();
+       //TODO after the current game trys to fetch the result if it have the data nav to draw display
+       //else restart the timer
+
+
+      console.log("***************************")
+    }
   });
 };
+
+
  export const GameTime=async ()=>{
   // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>");
   fetchServerTime();
-  const [min, setMinutes] = useAtom(MINUTE);
-  const [sec, SetSeconds] = useAtom(SELECTEDSPOTS);
+
  
   const currentTime: Date  = getServerTime();
-  const CurrentGameEndTime=await CurrentGame();
-  // const formattedTime = formatTime(currentTime);
-  // console.log('Formatted Time:', formattedTime);
+
+
 
   //fallback
   if (!currentTime) {
     // If currentDateTime is undefined, fetch server time again
     await fetchServerTime();
-    // console.log("=======>"+gameID.init)
-    // console.log("=======>"+CurrentGameEndTime)
-    // console.log("=======>"+formattedTime)
+
   }
  
-    const newDate: Date = new Date(CurrentGameEndTime);
-    const fg = newDate.getTime() - currentTime.getTime();
-  countdown(new Date(fg).getMinutes(),  new Date(fg).getSeconds(), (minutes, seconds) => {
-      // console.log(`${minutes}:${seconds}`);
-setMinutes(()=>MINUTE.init=minutes)
-setMinutes(()=>SECOND.init=seconds)
-   console.log(`${MINUTE.init}:${SECOND.init}`);
-    });
+
   
 
  }
 
 
+
+
+ 
+
+///
 export const Renderer =()=>{
-  fetchServerTime();
+  GameTime();
   const [Screen] = useAtom(DisplayToShow);
     switch (Screen) {
       case 'BallMixing':
