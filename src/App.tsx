@@ -9,7 +9,6 @@ function App() {
   // console.log('isOnline'+ isOnline)
   // TODO state hook with the value of newtwork,render component ,time,draw data
   CurrentGame()
-  GetUserBets()
   // GameTime()
 
 

@@ -1,6 +1,6 @@
 const APP_URL = import.meta.env.VITE_API_URL
 import { io } from "socket.io-client";
-import { PrimitiveAtom, atom, useAtom } from 'jotai';
+import { PrimitiveAtom, SetStateAction, atom, useAtom } from 'jotai';
 import { getServerTime, setServerTime } from "../services/serverTime";
 import { useEffect, useState } from "react";
 import { useGetCurrentGames } from "../services/Api/queres";
@@ -9,6 +9,8 @@ import axios from "axios";
 import BallMixing from '../pages/ball-mixing/ball.mixing';
 import History from '../pages/history/history';
 import Display from '../pages/draw-display/display/display';
+import { DRAWTYPE } from "../pages/history/components/history.widget";
+import { HISTORTYPE } from "../types";
 const socket = io(APP_URL.split("game")[0]);
 
 
@@ -29,6 +31,7 @@ const EndTime = atom(0)
 const DisplayToShow = atom<'BallMixing' | 'History' | 'Display'>('Display');
 export const USER_BETS = atom<object | undefined>(undefined)
 export const isUserBetsExist = atom(false)
+export const gameHistory = atom<HISTORTYPE[]>([])
 
 
 export const BETPAYOUTTABLE: Record<number, Record<string, number>[]> = {
@@ -98,6 +101,8 @@ export const CurrentGame = async () => {
   const [ID, setGameID] = useAtom(gameID);
   const [history, setHisoricalGame] = useAtom(SELECTEDSPOTS);
   const [end, setEnd] = useAtom(EndTime);
+  const [min, setMinutes] = useAtom(MINUTE);
+  const [sec, SetSeconds] = useAtom(SECOND);
 
   const response = await axios.get(APP_URL + "get-current-games");
   console.log("current data", response.data, Date.UTC);
@@ -106,10 +111,20 @@ export const CurrentGame = async () => {
     // EndTime.init=response?.data?.currentGame?.end_time;
     setGameID(() => gameID.init = response?.data?.currentGame?.daily_id,)
     setHisoricalGame(() => SELECTEDSPOTS.init = response?.data?.previousGame?.draw,)
-
+    setMinutes(() => MINUTE.init = response?.data?.currentGame.minutes)
+    SetSeconds(() => SECOND.init = response?.data?.currentGame.seconds)
 
   }
   return response?.data?.currentGame?.end_time;
+};
+
+export const GameHistory = async () => {
+  const [_gameHistory, setGameHistory] = useAtom(gameHistory)
+  const response = await axios.get(APP_URL + "get-games");
+  console.log("history data", response.data);
+  if (response.status === 200 && Array.isArray(response.data) && response.data.length > 2) {
+    setGameHistory(response.data as HISTORTYPE[]);
+  }
 };
 
 export const GetUserBets = async () => {
@@ -173,14 +188,14 @@ const fetchServerTime = () => {
     //  MINUTE.init=val?.now
     setMinutes(() => MINUTE.init = val.minutes)
     SetSeconds(() => SECOND.init = val.seconds)
-    if (MINUTE.init == 0 && SECOND.init == 10) {
-      const res = await CurrentGame();
-      //TODO after the current game trys to fetch the result if it have the data nav to draw display
-      //else restart the timer
+    // if (MINUTE.init == 0 && SECOND.init == 10) {
+    //   const res = await CurrentGame();
+    //   //TODO after the current game trys to fetch the result if it have the data nav to draw display
+    //   //else restart the timer
 
 
-      console.log("***************************")
-    }
+    //   console.log("***************************")
+    // }
   });
 };
 
