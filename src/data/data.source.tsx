@@ -23,10 +23,9 @@ export const IsDisplayLive = atom(true);
 export const INDEX = atom(2);
 export const PAYOUTINDEX = atom<number>(10);
 export const ISONLINE = atom(false);
-export const SELECTEDSPOTS = atom([
-  2, 31, 4, 5, 46, 7, 80, 9, 10, 72, 21, 29, 33, 44, 55, 66, 52, 18, 74, 50,
-]);
-export const SPOT = atom(4);
+export const SELECTEDSPOTS = atom<number[]>([]);
+export const SPOT = atom<number | undefined>(undefined);
+export const StartBallAnimation = atom(false);
 const EndTime = atom(0);
 const DisplayToShow = atom<"BallMixing" | "History" | "Display">("Display");
 export const USER_BETS = atom<object | undefined>(undefined)
@@ -141,6 +140,8 @@ export const GetUserBets = async () => {
 const fetchServerTime = () => {
   const [, setMinutes] = useAtom(MINUTE);
   const [, setSeconds] = useAtom(SECOND);
+  const [, setStartBallAnimation] = useAtom(StartBallAnimation)
+  const [, setSelectedSpots] = useAtom(SELECTEDSPOTS)
 
   socket.on("timeStamp", async (val) => {
     if (val.minutes == 2) {
@@ -149,6 +150,17 @@ const fetchServerTime = () => {
       setMinutes(() => (MINUTE.init = val.minutes));
     }
     setSeconds(() => (SECOND.init = val.seconds));
+    console.log({ second: SECOND.init, minute: MINUTE.init });
+    console.log(SECOND.init < 5, MINUTE.init == 0)
+    if (MINUTE.init == 0 && SECOND.init < 5 && !StartBallAnimation.init) {
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      console.log("start ball animation")
+      console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+      setTimeout(() => {
+        setSelectedSpots(() => SELECTEDSPOTS.init = [])
+        setStartBallAnimation(() => StartBallAnimation.init = true)
+      }, 4000)
+    }
   });
 };
 
