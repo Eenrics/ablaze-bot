@@ -1,0 +1,26 @@
+{
+  "global": {
+    "draw": "ቀጣዩ",
+    "pick": "{{number}} ምረጥ"
+  },
+  "game": {
+    "hits": "ሙከራ",
+    "win": "አሸናፊ",
+    "balls_drawn_from": "ከ የተሳሉ ኳሶች"
+  },
+  "home": {
+    "header": "enkuan dehna beselam metu!"
+  },
+  "about": {
+    "header": "enkuan dehna beselam metu!"
+  },
+  "contact": {
+    "header": "enkuan dehna beselam metu!"
+  },
+  "history": {
+    "placeholder": "የጨዋታ ታሪክ እዚህ ይሄዳል!"
+  },
+  "footer": {
+    "header": "enkuan dehna beselam metu!"
+  }
+}
