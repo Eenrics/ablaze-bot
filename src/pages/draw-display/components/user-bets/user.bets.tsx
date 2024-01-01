@@ -46,7 +46,7 @@ function UserBets() {
                         );
                     })}
                 </div>
-                <div className=" bg-[#b70d00] [box-shadow:0px_1px_10px_0px_#000000] flex justify-between">
+                <div className=" bg-[#b70d00] [box-shadow:0px_4px_4px_0px_#00000040] flex justify-between">
                     <p className=" capitalize micro text-white text-sm p-3">
                         min payout :{" "}
                         <span className="text-[#ff0000] uppercase">{minimunPayout} birr</span>

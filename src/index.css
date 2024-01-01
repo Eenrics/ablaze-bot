@@ -35,6 +35,24 @@
 }
 
 @font-face {
+  font-family: "MicroFLF-Regular";
+  src: url("/assets/fonts/MicroFLF.ttf") format("woff");
+}
+
+.micro-reg {
+  font-family: "MicroFLF-Regular";
+}
+
+@font-face {
+  font-family: "MicroFLF-Bold";
+  src: url("/assets/fonts/MicroFLF-Bold.ttf") format("woff");
+}
+
+.micro {
+  font-family: "MicroFLF-Bold";
+}
+
+@font-face {
   font-family: "Good Time";
   src: url("@assets/fonts/goodtime.ttf") format("truetype");
 }
@@ -88,24 +106,25 @@ button:focus-visible {
 }
 
 .scale-down-center {
-  -webkit-animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    both;
+  -webkit-animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .scale-down-center-2 {
-  -webkit-animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    both;
+  -webkit-animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation-delay: 0.5s;
 }
+
 @font-face {
   src: url("@assets/fonts/Poppins-Black.ttf") format("truetype");
   font-family: "Poppins", sans-serif;
 }
+
 .poppins {
   font-family: "Poppins";
 }
+
 @-webkit-keyframes scale-down-center {
   0% {
     -webkit-transform: scale(2);
@@ -258,15 +277,19 @@ button:focus-visible {
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(-100%);
   }
 }
+
 .text-background-color {
   background: linear-gradient(180.73deg, #ffe600 52.5%, #000000 133.2%);
 }
+
 .animate-slide-right-to-left {
-  animation: slideRightToLeft 10s linear infinite; /* Jackpot display animation to 10 sec */
+  animation: slideRightToLeft 10s linear infinite;
+  /* Jackpot display animation to 10 sec */
 }
 
 .jackpot-drop-shadow {
@@ -311,6 +334,7 @@ button:focus-visible {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 /* Game status title  */
 
 .draw-text {
@@ -320,12 +344,14 @@ button:focus-visible {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .keno-text {
   background: linear-gradient(180deg, #ffe600 46.3%, #000000 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .status-title {
   /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.42); */
   font-family: "MicroFLF-Bold";
@@ -367,13 +393,20 @@ button:focus-visible {
 
 
 @keyframes infiniteScroll {
-  from {transform: translateX(0)}
-  to {transform: translateX(-50%)}
+  from {
+    transform: translateX(0)
+  }
+
+  to {
+    transform: translateX(-50%)
+  }
 }
+
 .ads-container {
   width: 100%;
   overflow-x: hidden;
 }
+
 .horizontal-scrolling-items {
   display: flex;
   font-size: 20px;
@@ -383,6 +416,7 @@ button:focus-visible {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
+
 .horizontal-scrolling-items__item {
   white-space: nowrap;
 }

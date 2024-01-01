@@ -34,44 +34,52 @@ function BetsCard({ bet, draw, index }: { bet: object, draw: number[], index: nu
                 </div>
             </div>
             <div className=" flex-grow">
-                <div className="grid grid-cols-2">
-                    <div className=" text-left uppercase font-semibold text-sm text-white micro">
-                        receipt number
+                <div className="flex flex-col gap-2">
+                    <div className="grid grid-cols-2">
+                        <div className=" text-left uppercase font-semibold text-sm text-white micro">
+                            receipt number
+                        </div>
+                        <div className="text-right font-semibold text-sm text-white micro">
+                            {receipt_number}
+                        </div>
                     </div>
-                    <div className="text-right font-semibold text-sm text-white micro">
-                        {receipt_number}
+                    <div className="grid grid-cols-2">
+                        <div className="text-left micro-reg text-white uppercase text-sm">spots</div>
+                        <div className="text-right flex flex-row justify-end gap-[1px] items-center">
+                            {/* <span className="bg-white px-2 py-[2px] text-black text-xs font-semibold rounded-[4px]">
+                                1
+                            </span>
+                            <span className="bg-[#ed880e] px-2 py-[2px] text-white text-xs font-semibold rounded-[4px]">
+                                2
+                            </span>
+                            <span className="bg-white px-2 py-[2px] text-black text-xs font-semibold rounded-[4px]">
+                                3
+                            </span>
+                            <span className="bg-white px-2 py-[2px] text-black text-xs font-semibold rounded-[4px]">
+                                4
+                            </span> */}
+                            {
+                                choices.map((choice, i) => {
+                                    return (
+                                        <span className={`${draw.includes(choice) ? 'bg-[#ed880e] text-white' : 'bg-white text-black'} px-2 py-[2px] text-xs font-semibold rounded-[4px]`} key={i}>
+                                            {choice}
+                                        </span>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
-                    <div className="text-left micro-reg text-white">spots</div>
-                    <div className="text-right flex flex-row justify-end gap-[1px] items-center">
-                        {/* <span className="bg-white px-2 py-[2px] text-black text-xs font-semibold rounded-[4px]">
-                            1
-                        </span>
-                        <span className="bg-[#ed880e] px-2 py-[2px] text-white text-xs font-semibold rounded-[4px]">
-                            2
-                        </span>
-                        <span className="bg-white px-2 py-[2px] text-black text-xs font-semibold rounded-[4px]">
-                            3
-                        </span>
-                        <span className="bg-white px-2 py-[2px] text-black text-xs font-semibold rounded-[4px]">
-                            4
-                        </span> */}
-                        {
-                            choices.map((choice, i) => {
-                                return (
-                                    <span className={`${draw.includes(choice) ? 'bg-[#ed880e] text-white' : 'bg-white text-black'} px-2 py-[2px] text-xs font-semibold rounded-[4px]`} key={i}>
-                                        {choice}
-                                    </span>
-                                )
-                            })
-                        }
+                    <div className="grid grid-cols-2">
+                        <div className="text-left micro-reg text-white uppercase text-sm">odds</div>
+                        <div className="text-right font-semibold text-xs uppercase text-white micro">
+                            {odds}
+                        </div>
                     </div>
-                    <div className="text-left micro-reg text-white">odds</div>
-                    <div className="text-right font-semibold text-xs uppercase text-white micro">
-                        {odds}
-                    </div>
-                    <div className="text-left micro-reg text-white">stake</div>
-                    <div className="text-right font-semibold text-xs uppercase text-white micro">
-                        {stake} etb
+                    <div className="grid grid-cols-2">
+                        <div className="text-left micro-reg text-white uppercase text-sm">stake</div>
+                        <div className="text-right font-semibold text-xs uppercase text-white micro">
+                            {stake} etb
+                        </div>
                     </div>
                 </div>
             </div>
