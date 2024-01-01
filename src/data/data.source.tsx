@@ -23,12 +23,13 @@ export const IsDisplayLive = atom(true);
 export const INDEX = atom(2);
 export const PAYOUTINDEX = atom<number>(10);
 export const ISONLINE = atom(false);
-export const SELECTEDSPOTS = atom([
-  2, 31, 4, 5, 46, 7, 80, 9, 10, 72, 21, 29, 33, 44, 55, 66, 52, 18, 74, 50,
-]);
-export const SPOT = atom(4);
+export const SELECTEDSPOTS = atom<number[]>([]);
+export const SPOT = atom<number | undefined>(undefined);
+export const StartBallAnimation = atom(false);
 const EndTime = atom(0);
 const DisplayToShow = atom<"BallMixing" | "History" | "Display">("Display");
+export const USER_BETS = atom<object | undefined>(undefined)
+export const isUserBetsExist = atom(false)
 export const historyDataAtom = atom<HISTORTYPE[]>([]);
 
 export const BETPAYOUTTABLE: Record<number, Record<string, number>[]> = {
@@ -98,9 +99,49 @@ export const CurrentGame = async () => {
   return response;
 };
 
+export const GameHistory = async () => {
+  const [_gameHistory, setGameHistory] = useAtom(historyDataAtom)
+  const response = await axios.get(APP_URL + "get-games");
+  console.log("history data", response.data);
+  if (response.status === 200 && Array.isArray(response.data) && response.data.length > 2) {
+    setGameHistory(response.data as HISTORTYPE[]);
+  }
+};
+
+export const GetUserBets = async () => {
+  const queryParams = new URLSearchParams(window.location.search);
+  const [_userBets, setUserBets] = useAtom(USER_BETS)
+  const [_isUserBets, setIsUserBets] = useAtom(isUserBetsExist)
+
+  const gameId = queryParams.get("game_id");
+  const userId = queryParams.get("user_id");
+
+  console.log(gameId)
+  console.log(userId)
+  if (gameId && userId && gameId !== "" && userId !== "") {
+    const response = await axios.get(`https://bets.et:3001/game-service/one-game-bets`, {
+      params: {
+        user_id: userId,
+        game_id: gameId,
+      },
+    });
+    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+    console.log(response.data)
+    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+    if (response.status === 200) {
+      if (response.data?.bets?.length > 0) {
+        setUserBets(() => USER_BETS.init = response.data)
+        setIsUserBets(() => isUserBetsExist.init = true)
+      }
+    }
+  }
+}
+
 const fetchServerTime = () => {
   const [, setMinutes] = useAtom(MINUTE);
   const [, setSeconds] = useAtom(SECOND);
+  const [, setStartBallAnimation] = useAtom(StartBallAnimation)
+  const [, setSelectedSpots] = useAtom(SELECTEDSPOTS)
 
   socket.on("timeStamp", async (val) => {
     if (val.minutes == 2) {
@@ -109,6 +150,17 @@ const fetchServerTime = () => {
       setMinutes(() => (MINUTE.init = val.minutes));
     }
     setSeconds(() => (SECOND.init = val.seconds));
+    console.log({ second: SECOND.init, minute: MINUTE.init });
+    console.log(SECOND.init < 5, MINUTE.init == 0)
+    if (MINUTE.init == 0 && SECOND.init < 5 && !StartBallAnimation.init) {
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      console.log("start ball animation")
+      console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+      setTimeout(() => {
+        setSelectedSpots(() => SELECTEDSPOTS.init = [])
+        setStartBallAnimation(() => StartBallAnimation.init = true)
+      }, 4000)
+    }
   });
 };
 
