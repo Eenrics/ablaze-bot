@@ -15,8 +15,8 @@ import { useAtom } from "jotai";
 const data = Array.from({ length: 80 }, (_, index) => index + 1);
 
 function Display() {
-  const [isUserBets] = useAtom(isUserBetsExist)
-  console.log("userBets", isUserBets)
+  // const [isUserBets] = useAtom(isUserBetsExist)
+  // console.log("userBets", isUserBets)
   return (
     <div className="game-layout w-full min-h-screen overflow-x-hidden bg-gradient-to-r from-[#950B01]  to-[#CE0F00]">
       <MainHeader />
@@ -43,7 +43,7 @@ function Display() {
             <div className="col-span-4"><DrawerTube /></div>
           </div>
         </div>
-        {!(isUserBets) ? <PayoutTable /> :
+        {!(isUserBetsExist.init && IsDisplayLive.init) ? <PayoutTable /> :
           <UserBets />}
       </div>
     </div>

@@ -53,7 +53,7 @@ function UserBets() {
                     </p>
                     <p className=" capitalize micro text-white text-sm p-3">
                         max payout :{" "}
-                        <span className=" bg-gradient-to-b from-[#ffe500] to-[#7a6e01] bg-clip-text text-transparent font-extrabold">
+                        <span className=" bg-gradient-to-b from-[#ffe500] to-[#7a6e01] bg-clip-text text-transparent font-extrabold uppercase ">
                             {maximumPayout.toLocaleString()} birr
                         </span>
                     </p>
