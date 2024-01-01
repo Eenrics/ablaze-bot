@@ -7,17 +7,19 @@ import TailsEvenWithGameNumbers from "../components/game-board/tails.even.game.n
 import BetTimer from "../components/game-header/bet.timer";
 import BetClosed from "../components/game-header/bet.closed";
 import NumberBoard from "../components/game-header/number.board";
-import { IsDisplayLive, SELECTEDSPOTS, } from "../../../data/data.source";
+import { IsDisplayLive, SELECTEDSPOTS, isUserBetsExist, } from "../../../data/data.source";
 import DrawerTube from "../components/game-board/drawer.tube";
 import PayoutTable from "../components/game-payout/payout.table";
+import UserBets from "../components/user-bets/user.bets";
 const data = Array.from({ length: 80 }, (_, index) => index + 1);
 
 function Display() {
   return (
     <div className="game-layout w-full min-h-screen overflow-x-hidden bg-gradient-to-r from-[#950B01]  to-[#CE0F00]">
       <MainHeader />
-      {/* <BetClosed/> */}
-      <BetTimer />
+     { IsDisplayLive.init?
+     <BetClosed/>:
+      <BetTimer />}
       <AdsBanner />
       <div className="w-full h-full col-span-3">
         <div
@@ -39,7 +41,8 @@ function Display() {
             <div className="col-span-4"><DrawerTube /></div>
           </div>
         </div>
-        <PayoutTable />
+        {!(isUserBetsExist.init && IsDisplayLive.init) ? <PayoutTable /> :
+          <UserBets />}
       </div>
     </div>
   );
