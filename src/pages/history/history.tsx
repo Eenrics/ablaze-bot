@@ -2,6 +2,7 @@ import React from "react";
 import HistoryWidget from "./components/history.widget";
 import AdsBanner from "../../components/ads-banner/ads.banner";
 import MainHeader from "../../components/header/main.header";
+import { historyDataAtom } from "../../data/data.source";
 const lots = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 70,
 ];
@@ -17,7 +18,7 @@ function History() {
           <div className="w-full pl-2 flex flex-col justify-start mb-2 ">
             <div className="gap-2 mb-2" key={1234}>
               <p className="ml-3 text-[3.7vw] font-bold text-white">1234</p>
-              <HistoryWidget draw={lots} />
+              {/* <HistoryWidget draw={historyDataAtom} /> */}
             </div>
           </div>
           <AdsBanner />
