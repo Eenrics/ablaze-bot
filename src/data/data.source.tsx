@@ -90,10 +90,47 @@ export const BETPAYOUTTABLE: Record<number, Record<string, number>[]> = {
     { num: 10, odd: 5000 },
   ],
 };
-const CheckInternet = () => {
-  //TODO  check intenet connection and if tit is ofl;ine call the connecting layout
-};
+export const ONLINE=atom(false);
+export const OFFLINE=atom(true);
 
+const CheckcIsOffline=()=>{
+
+  // socket.on("connect", () => {
+  //   const [, setOnline] = useAtom(ONLINE);
+  //   const [, setOffline] = useAtom(OFFLINE);
+  //   setOnline(()=>(ONLINE.init = true));
+  //   setOffline(()=>(OFFLINE.init = false));
+  //   console.log(socket.disconnected); // false
+  // });
+  
+  socket.on("disconnect", () => {
+    const [, setOnline] = useAtom(ONLINE);
+    const [, setOffline] = useAtom(OFFLINE);
+    setOnline(()=>(ONLINE.init = false));
+    setOffline(()=>(OFFLINE.init = true));
+    console.log(socket.disconnected); // true
+  });
+  return socket.disconnected;
+}
+const CheckcIsOline=()=>{
+
+  socket.on("connect", () => {
+    const [, setOnline] = useAtom(ONLINE);
+    const [, setOffline] = useAtom(OFFLINE);
+    setOnline(()=>(ONLINE.init = true));
+    setOffline(()=>(OFFLINE.init = false));
+    console.log(socket.disconnected); // false
+  });
+  
+  // socket.on("disconnect", () => {
+  //   const [, setOnline] = useAtom(ONLINE);
+  //   const [, setOffline] = useAtom(OFFLINE);
+  //   setOnline(()=>(ONLINE.init = false));
+  //   setOffline(()=>(OFFLINE.init = true));
+  //   console.log(socket.disconnected); // true
+  // });
+  return socket.connect;
+}
 // Timer section
 // 🚩 when the timer hits 00:00 the component timer will be changed to bet-close comp- before 10 sec retry to get the result  if the result is not empty go to the below line
 // 🚩 then after  we change isDisplayLive to True ==>
@@ -218,6 +255,7 @@ export const GameTime = async () => {
 
 ///
 export const Renderer = () => {
+ console.log(ONLINE.init);
   GameTime();
   const [Screen] = useAtom(DisplayToShow);
   switch (Screen) {

@@ -70,8 +70,10 @@ export const App = () => {
           );
           setLength(() => (INDEX.init = SELECTEDSPOTS.init.length));
           if (SELECTEDSPOTS.init.length === 20) {
+            setTimeout(() => {
             setIsDisplay(() => (IsDisplayLive.init = false));
             setNextDisplay(() => (DisplayToShow.init = "History"));
+            },2000)
           }
         }
       }, 1500);
