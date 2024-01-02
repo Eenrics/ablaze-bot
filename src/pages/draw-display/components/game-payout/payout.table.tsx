@@ -1,8 +1,7 @@
-import React from "react";
 import { BETPAYOUTTABLE, PAYOUTINDEX } from "../../../../data/data.source";
 
 function PayoutTable() {
- 
+
   return (
     <>
       <div className="flex flex-col items-center w-2/3 mx-auto">

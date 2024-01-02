@@ -1,12 +1,8 @@
 const APP_URL = import.meta.env.VITE_API_URL;
 import { io } from "socket.io-client";
-import { PrimitiveAtom, atom, useAtom } from "jotai";
-import { getServerTime, setServerTime } from "../services/serverTime";
+import { atom, useAtom } from "jotai";
 import { useRef, useState } from "react";
-import { useGetCurrentGames } from "../services/Api/queres";
-import { setTimer, startTimer } from "../services/timeCounterService";
 import axios from "axios";
-import BallMixing from "../pages/ball-mixing/ball.mixing";
 import History from "../pages/history/history";
 import Display from "../pages/draw-display/display/display";
 import { HISTORTYPE } from "../types";
@@ -27,7 +23,6 @@ export const SELECTEDSPOTS = atom<number[]>([]);
 export const USER_BETS = atom<object | undefined>(undefined);
 export const isUserBetsExist = atom(false);
 export const SPOT = atom<number | undefined>(undefined);
-const EndTime = atom(0);
 export const DisplayToShow = atom<"BallMixing" | "History" | "Display">(
   "Display",
 );
@@ -115,74 +110,74 @@ export const CheckIsOffline = () => {
 
 
 }
-const PayoutTblAnimn = (seconds: number) => {
-  const [, setSec] = useAtom(PAYOUTINDEX);
+// const PayoutTblAnimn = (seconds: number) => {
+//   const [, setSec] = useAtom(PAYOUTINDEX);
 
-  switch (seconds) {
-    case 55:
-      setSec(() => (PAYOUTINDEX.init = 10));
+//   switch (seconds) {
+//     case 55:
+//       setSec(() => (PAYOUTINDEX.init = 10));
 
-      ;
-      break;
-    case 50:
-      setSec(() => (PAYOUTINDEX.init = 9));
-      break;
-    case 45:
-      setSec(() => (PAYOUTINDEX.init = 8));
-      break;
-    case 40:
-      setSec(() => (PAYOUTINDEX.init = 7));
-      break;
-    case 35:
-      setSec(() => (PAYOUTINDEX.init = 6));
-      break;
-    case 30:
-      setSec(() => (PAYOUTINDEX.init = 5));
-      break;
-    case 25:
-      setSec(() => (PAYOUTINDEX.init = 4));
-      break;
-    case 20:
-      setSec(() => (PAYOUTINDEX.init = 3));
-      break;
-    case 15:
-      setSec(() => (PAYOUTINDEX.init = 2));
-      break;
-    case 10:
-      setSec(() => (PAYOUTINDEX.init = 1));
-      break;
-    case 5:
-      setSec(() => (PAYOUTINDEX.init = 1));
-      break;
-    default:
-      break;
-  }
-}
-const CheckcIsOline = () => {
+//       ;
+//       break;
+//     case 50:
+//       setSec(() => (PAYOUTINDEX.init = 9));
+//       break;
+//     case 45:
+//       setSec(() => (PAYOUTINDEX.init = 8));
+//       break;
+//     case 40:
+//       setSec(() => (PAYOUTINDEX.init = 7));
+//       break;
+//     case 35:
+//       setSec(() => (PAYOUTINDEX.init = 6));
+//       break;
+//     case 30:
+//       setSec(() => (PAYOUTINDEX.init = 5));
+//       break;
+//     case 25:
+//       setSec(() => (PAYOUTINDEX.init = 4));
+//       break;
+//     case 20:
+//       setSec(() => (PAYOUTINDEX.init = 3));
+//       break;
+//     case 15:
+//       setSec(() => (PAYOUTINDEX.init = 2));
+//       break;
+//     case 10:
+//       setSec(() => (PAYOUTINDEX.init = 1));
+//       break;
+//     case 5:
+//       setSec(() => (PAYOUTINDEX.init = 1));
+//       break;
+//     default:
+//       break;
+//   }
+// }
+// const CheckcIsOline = () => {
 
-  socket.on("connect", () => {
-    const [, setOnline] = useAtom(ONLINE);
-    const [, setOffline] = useAtom(OFFLINE);
-    setOnline(() => (ONLINE.init = true));
-    setOffline(() => (OFFLINE.init = false));
-    console.log(socket.disconnected); // false
-  });
+//   socket.on("connect", () => {
+//     const [, setOnline] = useAtom(ONLINE);
+//     const [, setOffline] = useAtom(OFFLINE);
+//     setOnline(() => (ONLINE.init = true));
+//     setOffline(() => (OFFLINE.init = false));
+//     console.log(socket.disconnected); // false
+//   });
 
-  // socket.on("disconnect", () => {
-  //   const [, setOnline] = useAtom(ONLINE);
-  //   const [, setOffline] = useAtom(OFFLINE);
-  //   setOnline(()=>(ONLINE.init = false));
-  //   setOffline(()=>(OFFLINE.init = true));
-  //   console.log(socket.disconnected); // true
-  // });
+//   // socket.on("disconnect", () => {
+//   //   const [, setOnline] = useAtom(ONLINE);
+//   //   const [, setOffline] = useAtom(OFFLINE);
+//   //   setOnline(()=>(ONLINE.init = false));
+//   //   setOffline(()=>(OFFLINE.init = true));
+//   //   console.log(socket.disconnected); // true
+//   // });
 
-}
-// Timer section
-// 🚩 when the timer hits 00:00 the component timer will be changed to bet-close comp- before 10 sec retry to get the result  if the result is not empty go to the below line
-// 🚩 then after  we change isDisplayLive to True ==>
-// 🚩 after the draw is finished we change the @Renderer  to History
-// 🚩 then after 4 sec change the  @Renderer change to Display show timer header
-// 🚩 then on display  we are gonna  change IsDisplayLive to false
+// }
+// // Timer section
+// // 🚩 when the timer hits 00:00 the component timer will be changed to bet-close comp- before 10 sec retry to get the result  if the result is not empty go to the below line
+// // 🚩 then after  we change isDisplayLive to True ==>
+// // 🚩 after the draw is finished we change the @Renderer  to History
+// // 🚩 then after 4 sec change the  @Renderer change to Display show timer header
+// // 🚩 then on display  we are gonna  change IsDisplayLive to false
 export const CurrentGame = async () => {
   const response = await axios.get(APP_URL + "get-current-games");
   return response;
@@ -195,11 +190,11 @@ const fetchServerTime = () => {
   const [, setHistory] = useAtom(SELECTEDSPOTS);
   const [, setIsDisplay] = useAtom(IsDisplayLive);
   const [newSpots, setNewSpots] = useState([]);
-  const [tempCont, setTempCont] = useAtom(TempData);
+  const [_tempCont, setTempCont] = useAtom(TempData);
   const [newDailyId, setNewDailyId] = useState();
   const [, setStartBallAnimation] = useAtom(StartBallAnimation);
-  const [, setOnline] = useAtom(ONLINE);
-  const [, setOffline] = useAtom(OFFLINE);
+  const [, _setOnline] = useAtom(ONLINE);
+  const [, _setOffline] = useAtom(OFFLINE);
   const isFetched = useRef(false);
 
   // socket.on("disconnect", () => {
@@ -290,6 +285,7 @@ export const GetUserBets = async () => {
     console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
     return response;
   }
+  return
 }
 
 

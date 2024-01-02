@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
 import Animation from "./components/animation";
 import MainHeader from "../../components/header/main.header";
 

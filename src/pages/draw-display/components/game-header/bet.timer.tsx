@@ -1,4 +1,3 @@
-import React from "react";
 import { MINUTE, SECOND, gameID } from "../../../../data/data.source";
 
 function BetTimer() {

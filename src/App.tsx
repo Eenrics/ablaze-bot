@@ -5,8 +5,6 @@ import {
   DisplayToShow,
   INDEX,
   IsDisplayLive,
-  OFFLINE,
-  ONLINE,
   Renderer,
   SELECTEDSPOTS,
   SPOT,
@@ -16,11 +14,10 @@ import {
   gameID as globalGameId,
   isUserBetsExist,
 } from "./data/data.source";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export const App = () => {
   const [, setGameID] = useAtom(globalGameId);
-  const [, setSelectedSpots] = useAtom(SELECTEDSPOTS);
   const [_userBets, setUserBets] = useAtom(USER_BETS)
   const [_isUserBets, setIsUserBets] = useAtom(isUserBetsExist)
   const [, setHisoricalGame] = useAtom(SELECTEDSPOTS);

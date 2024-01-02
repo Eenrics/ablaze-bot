@@ -1,7 +1,5 @@
-import React from "react";
 import AdsBanner from "../../../components/ads-banner/ads.banner";
 import MainHeader from "../../../components/header/main.header";
-import { AnimatePresence } from "framer-motion";
 import HeadEven from "../components/game-board/head.even";
 import TailsEvenWithGameNumbers from "../components/game-board/tails.even.game.number";
 import BetTimer from "../components/game-header/bet.timer";
@@ -25,9 +23,8 @@ function Display() {
       <AdsBanner />
       <div className="w-full h-full col-span-3">
         <div
-          className={`w-full col-span-10 flex flex-col gap-2 px-2  ${
-            IsDisplayLive.init && "inset-shadow"
-          }`}
+          className={`w-full col-span-10 flex flex-col gap-2 px-2  ${IsDisplayLive.init && "inset-shadow"
+            }`}
         >
           {/* <JackpotDisplay /> */}
           <div className=" grid grid-cols-10 ">

@@ -1,5 +1,3 @@
-import React from 'react'
-
 function BetsCard({ bet, draw, index }: { bet: object, draw: number[], index: number }) {
     let receipt_number = ""
     let stake = ""

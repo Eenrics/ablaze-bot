@@ -1,4 +1,3 @@
-import React from "react";
 import { INDEX, SPOT } from "../../../../data/data.source";
 import { AnimatePresence, motion } from "framer-motion";
 

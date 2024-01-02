@@ -1,11 +1,8 @@
-import React from "react";
 import AdsBanner from "../../../components/ads-banner/ads.banner";
 import MainHeader from "../../../components/header/main.header";
-import { AnimatePresence } from "framer-motion";
 import HeadEven from "../components/game-board/head.even";
 import TailsEvenWithGameNumbers from "../components/game-board/tails.even.game.number";
 import BetTimer from "../components/game-header/bet.timer";
-import BetClosed from "../components/game-header/bet.closed";
 import NumberBoard from "../components/game-header/number.board";
 import { SELECTEDSPOTS } from "../../../data/data.source";
 import DrawerTube from "../components/game-board/drawer.tube";

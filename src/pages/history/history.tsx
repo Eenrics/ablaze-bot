@@ -1,5 +1,4 @@
-import React from "react";
-import HistoryWidget, { DRAWTYPE } from "./components/history.widget";
+import HistoryWidget from "./components/history.widget";
 import AdsBanner from "../../components/ads-banner/ads.banner";
 import MainHeader from "../../components/header/main.header";
 import {
