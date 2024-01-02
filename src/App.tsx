@@ -4,6 +4,7 @@ import {
   DisplayToShow,
   INDEX,
   IsDisplayLive,
+  ONLINE,
   Renderer,
   SELECTEDSPOTS,
   SPOT,
@@ -73,7 +74,7 @@ export const App = () => {
             setTimeout(() => {
             setIsDisplay(() => (IsDisplayLive.init = false));
             setNextDisplay(() => (DisplayToShow.init = "History"));
-            },2000)
+            })
           }
         }
       }, 1500);
@@ -82,7 +83,45 @@ export const App = () => {
   }, [SPOT.init, StartBallAnimation.init]);
   return (
     <div className="w-screen h-full flex justify-center items-center">
-      <Renderer />
+   { !ONLINE.init?  <Renderer />:
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#950B01]  to-[#CE0F00] opacity-95 flex flex-col items-center justify-center  ">
+      <div className="w-60 h-60 rounded-full border-4 border-white animate-pulse flex items-center justify-center">
+  
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="white"
+        className="w-40 h-40"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1"
+          d="M5 12.55a11 11 0 0 1 14.08 0"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1"
+          d="M1.42 9a16 16 0 0 1 21.16 0"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1"
+          d="M8.53 16.11a6 6 0 0 1 6.95 0"
+        />
+        <line x1="12" y1="20" x2="12" y2="20" />
+      </svg>
+    </div>
+
+
+    {/* Text */}
+    <p className="text-white mt-2 ">connecting ...</p>
+      
+
+      </div>}
     </div>
   );
 };
