@@ -36,11 +36,7 @@ function NumberBoard(props: Props) {
                       ? "bg-[#ffa640]/100"
                       : "bg-[#f6f640]/100"
                     : "bg-gradient-to-b from-[#B317001f] to-[#6305009f]"
-                } ${
-                  IsDisplayLive.init
-                    ? "rounded-[4px]"
-                    : "rounded-[8px]"
-                }`}
+                } ${IsDisplayLive.init ? "rounded-[4px]" : "rounded-[8px]"}`}
               >
                 <p
                   className={`eurasia text-[3vw]  ${

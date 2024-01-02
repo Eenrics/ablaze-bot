@@ -4,22 +4,40 @@ import { USER_BETS } from "../../../../data/data.source";
 import { useAtom } from "jotai";
 
 function UserBets() {
-    const [userBets] = useAtom(USER_BETS)
-    const bets: object[] = []
-    const draw: number[] = []
-    let maximumPayout = 0
-    let minimunPayout = 0
-    if (typeof userBets === "object" && "bets" in userBets && Array.isArray(userBets.bets) && userBets.bets.length > 0) {
-        bets.push(...userBets.bets)
+    const [userBets] = useAtom(USER_BETS);
+    const bets: object[] = [];
+    const draw: number[] = [];
+    let maximumPayout = 0;
+    let minimunPayout = 0;
+    if (
+        typeof userBets === "object" &&
+        "bets" in userBets &&
+        Array.isArray(userBets.bets) &&
+        userBets.bets.length > 0
+    ) {
+        bets.push(...userBets.bets);
     }
-    if (typeof userBets === "object" && "draw" in userBets && Array.isArray(userBets.draw) && userBets.draw.length > 0) {
-        draw.push(...userBets.draw)
+    if (
+        typeof userBets === "object" &&
+        "draw" in userBets &&
+        Array.isArray(userBets.draw) &&
+        userBets.draw.length > 0
+    ) {
+        draw.push(...userBets.draw);
     }
-    if (typeof userBets === "object" && "max_payout" in userBets && typeof userBets.max_payout === "number") {
-        maximumPayout = userBets.max_payout
+    if (
+        typeof userBets === "object" &&
+        "max_payout" in userBets &&
+        typeof userBets.max_payout === "number"
+    ) {
+        maximumPayout = userBets.max_payout;
     }
-    if (typeof userBets === "object" && "min_payout" in userBets && typeof userBets.min_payout === "number") {
-        minimunPayout = userBets.min_payout
+    if (
+        typeof userBets === "object" &&
+        "min_payout" in userBets &&
+        typeof userBets.min_payout === "number"
+    ) {
+        minimunPayout = userBets.min_payout;
     }
 
     console.log({ bets, draw, userBets }, typeof userBets === "object" && "bets" in userBets && Array.isArray(userBets.bets) && userBets.bets.length > 0)

@@ -391,7 +391,6 @@ button:focus-visible {
 
 /* ads-banner style and animation*/
 
-
 @keyframes infiniteScroll {
   from {
     transform: translateX(0)

@@ -1,6 +1,6 @@
-import React from 'react'
-import { INDEX, SPOT } from '../../../../data/data.source'
-import { AnimatePresence, motion } from 'framer-motion'
+import React from "react";
+import { INDEX, SPOT } from "../../../../data/data.source";
+import { AnimatePresence, motion } from "framer-motion";
 
 function DrawerTube() {
   return (
@@ -35,7 +35,7 @@ function DrawerTube() {
         alt=""
       />
     </div>
-  )
+  );
 }
 
-export default DrawerTube
+export default DrawerTube;

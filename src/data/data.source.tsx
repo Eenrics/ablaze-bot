@@ -2,7 +2,7 @@ const APP_URL = import.meta.env.VITE_API_URL;
 import { io } from "socket.io-client";
 import { PrimitiveAtom, atom, useAtom } from "jotai";
 import { getServerTime, setServerTime } from "../services/serverTime";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useGetCurrentGames } from "../services/Api/queres";
 import { setTimer, startTimer } from "../services/timeCounterService";
 import axios from "axios";
@@ -19,19 +19,21 @@ export const MINUTE = atom(0);
 export const SECOND = atom(0);
 export const EVEN = false;
 export const CurrentGameID = "";
-export const IsDisplayLive = atom(true);
-export const INDEX = atom(2);
+export const IsDisplayLive = atom(false);
+export const INDEX = atom(0);
 export const PAYOUTINDEX = atom<number>(10);
 export const ISONLINE = atom(false);
 export const SELECTEDSPOTS = atom<number[]>([]);
+export const USER_BETS = atom<object | undefined>(undefined);
+export const isUserBetsExist = atom(false);
 export const SPOT = atom<number | undefined>(undefined);
-export const StartBallAnimation = atom(false);
 const EndTime = atom(0);
-const DisplayToShow = atom<"BallMixing" | "History" | "Display">("Display");
-export const USER_BETS = atom<object | undefined>(undefined)
-export const isUserBetsExist = atom(false)
+export const DisplayToShow = atom<"BallMixing" | "History" | "Display">(
+  "Display",
+);
 export const historyDataAtom = atom<HISTORTYPE[]>([]);
-
+export const StartBallAnimation = atom(false);
+export const TempData = atom<number[]>([]);
 export const BETPAYOUTTABLE: Record<number, Record<string, number>[]> = {
   1: [{ num: 1, odd: 3.8 }],
   2: [{ num: 2, odd: 15 }],
@@ -88,23 +90,183 @@ export const BETPAYOUTTABLE: Record<number, Record<string, number>[]> = {
     { num: 10, odd: 5000 },
   ],
 };
-const CheckInternet = () => {
-  //TODO  check intenet connection and if tit is ofl;ine call the connecting layout
-};
 
+
+export const ONLINE = atom(false);
+export const OFFLINE = atom(true);
+
+socket.on("disconnect", () => {
+  const [, setOnline] = useAtom(ONLINE);
+  const [, setOffline] = useAtom(OFFLINE);
+  setOnline(() => (ONLINE.init = !socket.disconnected));
+  setOffline(() => (OFFLINE.init = socket.disconnected));
+  console.log(socket.disconnected); // true
+});
+export const CheckIsOffline = () => {
+
+  // socket.on("connect", () => {
+  //   const [, setOnline] = useAtom(ONLINE);
+  //   const [, setOffline] = useAtom(OFFLINE);
+  //   setOnline(()=>(ONLINE.init = true));
+  //   setOffline(()=>(OFFLINE.init = false));
+  //   console.log(socket.disconnected); // false
+  // });
+
+
+
+}
+const PayoutTblAnimn = (seconds: number) => {
+  const [, setSec] = useAtom(PAYOUTINDEX);
+
+  switch (seconds) {
+    case 55:
+      setSec(() => (PAYOUTINDEX.init = 10));
+
+      ;
+      break;
+    case 50:
+      setSec(() => (PAYOUTINDEX.init = 9));
+      break;
+    case 45:
+      setSec(() => (PAYOUTINDEX.init = 8));
+      break;
+    case 40:
+      setSec(() => (PAYOUTINDEX.init = 7));
+      break;
+    case 35:
+      setSec(() => (PAYOUTINDEX.init = 6));
+      break;
+    case 30:
+      setSec(() => (PAYOUTINDEX.init = 5));
+      break;
+    case 25:
+      setSec(() => (PAYOUTINDEX.init = 4));
+      break;
+    case 20:
+      setSec(() => (PAYOUTINDEX.init = 3));
+      break;
+    case 15:
+      setSec(() => (PAYOUTINDEX.init = 2));
+      break;
+    case 10:
+      setSec(() => (PAYOUTINDEX.init = 1));
+      break;
+    case 5:
+      setSec(() => (PAYOUTINDEX.init = 1));
+      break;
+    default:
+      break;
+  }
+}
+const CheckcIsOline = () => {
+
+  socket.on("connect", () => {
+    const [, setOnline] = useAtom(ONLINE);
+    const [, setOffline] = useAtom(OFFLINE);
+    setOnline(() => (ONLINE.init = true));
+    setOffline(() => (OFFLINE.init = false));
+    console.log(socket.disconnected); // false
+  });
+
+  // socket.on("disconnect", () => {
+  //   const [, setOnline] = useAtom(ONLINE);
+  //   const [, setOffline] = useAtom(OFFLINE);
+  //   setOnline(()=>(ONLINE.init = false));
+  //   setOffline(()=>(OFFLINE.init = true));
+  //   console.log(socket.disconnected); // true
+  // });
+
+}
 // Timer section
-
+// 🚩 when the timer hits 00:00 the component timer will be changed to bet-close comp- before 10 sec retry to get the result  if the result is not empty go to the below line
+// 🚩 then after  we change isDisplayLive to True ==>
+// 🚩 after the draw is finished we change the @Renderer  to History
+// 🚩 then after 4 sec change the  @Renderer change to Display show timer header
+// 🚩 then on display  we are gonna  change IsDisplayLive to false
 export const CurrentGame = async () => {
   const response = await axios.get(APP_URL + "get-current-games");
   return response;
 };
 
+const fetchServerTime = () => {
+  const [, setMinutes] = useAtom(MINUTE);
+  const [, setSeconds] = useAtom(SECOND);
+  const [, setGameID] = useAtom(gameID);
+  const [, setHistory] = useAtom(SELECTEDSPOTS);
+  const [, setIsDisplay] = useAtom(IsDisplayLive);
+  const [newSpots, setNewSpots] = useState([]);
+  const [tempCont, setTempCont] = useAtom(TempData);
+  const [newDailyId, setNewDailyId] = useState();
+  const [, setStartBallAnimation] = useAtom(StartBallAnimation);
+  const [, setOnline] = useAtom(ONLINE);
+  const [, setOffline] = useAtom(OFFLINE);
+  const isFetched = useRef(false);
+
+  // socket.on("disconnect", () => {
+
+  //   setOnline(()=>(ONLINE.init = !socket.disconnected));
+  //   setOffline(()=>(OFFLINE.init = socket.disconnected));
+  //   console.log(socket.disconnected); // true
+  // });
+
+  socket.on("timeStamp", async (val) => {
+    if (val.minutes == 2 && val.seconds == 0) {
+      isFetched.current = false;
+      if (newDailyId && newSpots && newSpots.length) {
+        setIsDisplay(() => (IsDisplayLive.init = true));
+        setGameID(() => (gameID.init = newDailyId));
+        setHistory(() => (SELECTEDSPOTS.init = newSpots));
+      } else {
+        setGameID(() => (gameID.init += 1));
+      }
+    }
+    if (val.minutes == 2 && val.seconds == 9 && !isFetched.current) {
+      isFetched.current = true;
+      CurrentGame().then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          setNewDailyId(res?.data?.currentGame?.daily_id);
+
+          // setNewSpots(res?.data?.previousGame?.draw);
+          setTimeout(() => {
+            setNewSpots(() => (SELECTEDSPOTS.init = []));
+            setIsDisplay(() => (IsDisplayLive.init = true));
+
+            setStartBallAnimation(() => (StartBallAnimation.init = true));
+            setTempCont(() => (TempData.init = res?.data?.previousGame?.draw));
+          }, 9000);
+        }
+      });
+
+      // setIsDisplay(() => (IsDisplayLive.init = true));
+    }
+    if (val.minutes == 2) {
+      setMinutes(() => (MINUTE.init = 0));
+    } else {
+      setMinutes(() => (MINUTE.init = val.minutes));
+    }
+    setSeconds(() => (SECOND.init = val.seconds));
+  });
+};
+
+
 export const GameHistory = async () => {
-  const [_gameHistory, setGameHistory] = useAtom(historyDataAtom)
-  const response = await axios.get(APP_URL + "get-games");
-  console.log("history data", response.data);
-  if (response.status === 200 && Array.isArray(response.data) && response.data.length > 2) {
-    setGameHistory(response.data as HISTORTYPE[]);
+  const [_gameHistory, setGameHistory] = useAtom(historyDataAtom);
+  const isFetched = useRef(false);
+
+  if (!isFetched.current) {
+    isFetched.current = true;
+
+    const response = await axios.get(APP_URL + "get-games");
+    console.log("history data", response.data);
+
+    if (
+      response.status === 200 &&
+      Array.isArray(response.data) &&
+      response.data.length > 2
+    ) {
+      setGameHistory(response.data as HISTORTYPE[]);
+    }
   }
 };
 
@@ -130,81 +292,15 @@ export const GetUserBets = async () => {
   }
 }
 
-const fetchServerTime = () => {
-  const [, setMinutes] = useAtom(MINUTE);
-  const [, setSeconds] = useAtom(SECOND);
-  const [, setStartBallAnimation] = useAtom(StartBallAnimation)
-  const [, setSelectedSpots] = useAtom(SELECTEDSPOTS)
 
-  socket.on("timeStamp", async (val) => {
-    if (val.minutes == 2) {
-      setMinutes(() => (MINUTE.init = 0));
-    } else {
-      setMinutes(() => (MINUTE.init = val.minutes));
-    }
-    setSeconds(() => (SECOND.init = val.seconds));
-    console.log({ second: SECOND.init, minute: MINUTE.init });
-    console.log(SECOND.init < 5, MINUTE.init == 0)
-    if (MINUTE.init == 0 && SECOND.init < 5 && !StartBallAnimation.init) {
-      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>");
-      console.log("start ball animation")
-      console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-      setTimeout(() => {
-        setSelectedSpots(() => SELECTEDSPOTS.init = [])
-        setStartBallAnimation(() => StartBallAnimation.init = true)
-      }, 4000)
-    }
-  });
-};
 
-function countdown(seconds: number, callback: (seconds: number) => void) {
-  let totalSeconds = seconds;
 
-  const intervalId = setInterval(() => {
-    // clearInterval(intervalId);
-
-    const displaySeconds = totalSeconds;
-
-    if (callback) {
-      callback(displaySeconds);
-    }
-
-    if (totalSeconds <= 0) {
-      clearInterval(intervalId);
-    } else {
-      totalSeconds--;
-      clearInterval(intervalId);
-    }
-  }, 1000);
-}
-
-// const fetchHistoryData = async () => {
-//   // TODO  Fetch Historical data
-//   const [historyData, setHistoryData] = useAtom(historyDataAtom);
-//   const [isLoading, setIsLoading] = useState(false);
-
-//   try {
-//     setIsLoading(true);
-//     const response = await axios.get(APP_URL + "get-games");
-//     if (response.status === 200) {
-//       setHistoryData((historyDataAtom.init = response.data));
-//     } else {
-//       console.error("Request failed with status:", response.status);
-//     }
-//   } catch (error) {
-//     console.error("Error during request:");
-//   } finally {
-//     setIsLoading(false);
-//   }
-// };
-export const GameTime = async () => {
-  // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>");
-  fetchServerTime();
-};
 
 ///
 export const Renderer = () => {
-  GameTime();
+
+
+  fetchServerTime();
   const [Screen] = useAtom(DisplayToShow);
   switch (Screen) {
     case "BallMixing":
