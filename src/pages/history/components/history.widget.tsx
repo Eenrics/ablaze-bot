@@ -8,7 +8,7 @@ function HistoryWidget({ draw }: DRAWTYPE) {
       <div className="flex flex-row">
         <div className="grid grid-cols-10 px-2 gap-[10px] ">
           {Array.isArray(draw) &&
-            draw.sort().map((lot: number, i: number) => {
+            draw.map((lot: number, i: number) => {
               return (
                 <div
                   key={i}
