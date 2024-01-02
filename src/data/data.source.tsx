@@ -110,14 +110,12 @@ export const GameHistory = async () => {
 
 export const GetUserBets = async () => {
   const queryParams = new URLSearchParams(window.location.search);
-  const [_userBets, setUserBets] = useAtom(USER_BETS)
-  const [_isUserBets, setIsUserBets] = useAtom(isUserBetsExist)
 
   const gameId = queryParams.get("game_id");
   const userId = queryParams.get("user_id");
 
-  console.log(gameId)
-  console.log(userId)
+  console.log({ gameId })
+  console.log({ userId })
   if (gameId && userId && gameId !== "" && userId !== "") {
     const response = await axios.get(`https://bets.et:3001/game-service/one-game-bets`, {
       params: {
@@ -128,12 +126,7 @@ export const GetUserBets = async () => {
     console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
     console.log(response.data)
     console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-    if (response.status === 200) {
-      if (response.data?.bets?.length > 0) {
-        setUserBets(() => USER_BETS.init = response.data)
-        setIsUserBets(() => isUserBetsExist.init = true)
-      }
-    }
+    return response;
   }
 }
 

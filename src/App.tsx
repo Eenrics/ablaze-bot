@@ -1,11 +1,14 @@
 import { useAtom } from "jotai";
 import {
   CurrentGame,
+  GetUserBets,
   Renderer,
   SELECTEDSPOTS,
   SPOT,
   StartBallAnimation,
+  USER_BETS,
   gameID as globalGameId,
+  isUserBetsExist,
 } from "./data/data.source";
 import { useEffect, useState } from "react";
 
@@ -13,6 +16,10 @@ export const App = () => {
   const [, setGameID] = useAtom(globalGameId);
   const [, setSelectedSpots] = useAtom(SELECTEDSPOTS);
   const [tempCont, setTempCont] = useState([])
+  const [_userBets, setUserBets] = useAtom(USER_BETS)
+  const [_isUserBets, setIsUserBets] = useAtom(isUserBetsExist)
+  const [selectedSpot, setSelectedSpot] = useAtom(SPOT)
+  const [ballAnimation, setBallAnimation] = useAtom(StartBallAnimation)
 
   useEffect(() => {
     const fun = async () => {
@@ -24,17 +31,26 @@ export const App = () => {
       }
     };
     fun();
-  }, []);
+  }, [ballAnimation]);
 
-  const [selectedSpot, setSelectedSpot] = useAtom(SPOT)
-  const [ballAnimation, setBallAnimation] = useAtom(StartBallAnimation)
+  useEffect(() => {
+    GetUserBets().then(response => {
+      if (response?.status === 200) {
+        if (response.data?.bets?.length > 0) {
+          setUserBets(() => USER_BETS.init = response.data)
+          setIsUserBets(() => isUserBetsExist.init = true)
+        }
+      }
+    })
+  }
+    , [])
 
   useEffect(() => {
     if (ballAnimation) {
       if (SELECTEDSPOTS.init.length === 20) {
         setTimeout(() => {
           setSelectedSpot(() => SPOT.init = undefined)
-        }, 1500)
+        }, 1000)
         return setBallAnimation(() => StartBallAnimation.init = false)
       }
       const intervalId = setInterval(() => {
@@ -45,7 +61,7 @@ export const App = () => {
           setSelectedSpot(() => SPOT.init = spot)
           setSelectedSpots(() => SELECTEDSPOTS.init = [...SELECTEDSPOTS.init, spot] as Array<number>)
         }
-      }, 1500)
+      }, 1000)
       return () => clearInterval(intervalId)
     }
   }, [SPOT.init, StartBallAnimation.init])
