@@ -61,7 +61,7 @@ function BetsCard({ bet, draw, index }: { bet: object, draw: number[], index: nu
                             {
                                 choices.map((choice, i) => {
                                     return (
-                                        <span className={`${draw.includes(choice) ? 'bg-[#ed880e] text-white' : 'bg-white text-black'} px-2 py-[2px] text-xs font-semibold rounded-[4px]`} key={i}>
+                                        <span className={`${draw.includes(choice) ? 'bg-[#ed880e] text-white' : 'bg-white text-black'} px-[1.5vw] py-[0.3vh] pt-[0.6vh] text-xs font-semibold rounded-[4px]`} key={i}>
                                             {choice}
                                         </span>
                                     )
