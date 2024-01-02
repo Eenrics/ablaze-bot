@@ -50,7 +50,7 @@ function UserBets() {
                 exit={{ opacity: 0, y: 30 }}
                 transition={{ duration: 0.2, delay: 0.5 }}
             >
-                <div className="py-3 w-full flex flex-col gap-3  bg-[#c73e33] mt-5 h-auto max-h-300px overflow-scroll">
+                <div className="py-3 w-full flex flex-col gap-3  bg-[#c73e33] mt-5 h-auto max-h-[300px] overflow-scroll">
                     <div className="flex justify-between mx-2">
                         <h2 className=" uppercase font-semibold micro text-white">
                             your numbers
