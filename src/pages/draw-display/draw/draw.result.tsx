@@ -7,7 +7,7 @@ import TailsEvenWithGameNumbers from "../components/game-board/tails.even.game.n
 import BetTimer from "../components/game-header/bet.timer";
 import BetClosed from "../components/game-header/bet.closed";
 import NumberBoard from "../components/game-header/number.board";
-import { SELECTEDSPOTS, } from "../../../data/data.source";
+import { SELECTEDSPOTS } from "../../../data/data.source";
 import DrawerTube from "../components/game-board/drawer.tube";
 import PayoutTable from "../components/game-payout/payout.table";
 const data = Array.from({ length: 80 }, (_, index) => index + 1);
@@ -32,7 +32,9 @@ function DrawResults() {
               <TailsEvenWithGameNumbers />
             </div>
 
-            <div className="col-span-4"><DrawerTube /></div>
+            <div className="col-span-4">
+              <DrawerTube />
+            </div>
           </div>
         </div>
         <PayoutTable />

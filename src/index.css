@@ -106,12 +106,14 @@ button:focus-visible {
 }
 
 .scale-down-center {
-  -webkit-animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -webkit-animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
   animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .scale-down-center-2 {
-  -webkit-animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -webkit-animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
   animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation-delay: 0.5s;
 }
@@ -391,14 +393,13 @@ button:focus-visible {
 
 /* ads-banner style and animation*/
 
-
 @keyframes infiniteScroll {
   from {
-    transform: translateX(0)
+    transform: translateX(0);
   }
 
   to {
-    transform: translateX(-50%)
+    transform: translateX(-50%);
   }
 }
 

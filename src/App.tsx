@@ -18,8 +18,8 @@ export const App = () => {
   const [, setHisoricalGame] = useAtom(SELECTEDSPOTS);
   const [tempCont, setTempCont] = useAtom(TempData);
   // const [tempCont, setTempCont] = useState([])
-  const [selectedSpot, setSelectedSpot] = useAtom(SPOT)
-  const [ballAnimation, setBallAnimation] = useAtom(StartBallAnimation)
+  const [selectedSpot, setSelectedSpot] = useAtom(SPOT);
+  const [ballAnimation, setBallAnimation] = useAtom(StartBallAnimation);
   const [, setIsDisplay] = useAtom(IsDisplayLive);
   const [, setNextDisplay] = useAtom(DisplayToShow);
   const [, setLength] = useAtom(INDEX);
@@ -30,43 +30,54 @@ export const App = () => {
       if (res.status === 200) {
         console.log("called");
         setGameID(() => (globalGameId.init = res?.data?.currentGame?.daily_id));
-        {!IsDisplayLive.init? setHisoricalGame(
-          () => (SELECTEDSPOTS.init = res?.data?.previousGame?.draw)
-        ):
-        setTempCont(() =>(TempData.init=res?.data?.previousGame?.draw));}
+        {
+          !IsDisplayLive.init
+            ? setHisoricalGame(
+                () => (SELECTEDSPOTS.init = res?.data?.previousGame?.draw),
+              )
+            : setTempCont(
+                () => (TempData.init = res?.data?.previousGame?.draw),
+              );
+        }
       }
     };
-   
+
     fun();
   }, []);
   useEffect(() => {
     console.log("anim called");
     if (ballAnimation) {
-      console.log(SELECTEDSPOTS.init)
+      console.log(SELECTEDSPOTS.init);
       if (SELECTEDSPOTS.init.length === 20) {
         setTimeout(() => {
-          setSelectedSpot(() => SPOT.init = undefined)
-        }, 1500)
-        return setBallAnimation(() => StartBallAnimation.init = false)
+          setSelectedSpot(() => (SPOT.init = undefined));
+        }, 1500);
+        return setBallAnimation(() => (StartBallAnimation.init = false));
       }
       const intervalId = setInterval(() => {
         if (selectedSpot) {
-          setSelectedSpot(() => SPOT.init = undefined)
+          setSelectedSpot(() => (SPOT.init = undefined));
         } else {
-          const spot = tempCont.shift()
-          setSelectedSpot(() => SPOT.init = spot)
+          const spot = tempCont.shift();
+          setSelectedSpot(() => (SPOT.init = spot));
 
-          setHisoricalGame(() => SELECTEDSPOTS.init = [...SELECTEDSPOTS.init, spot] as Array<number>)
-          setLength(() => (INDEX.init =SELECTEDSPOTS.init.length ));
+          setHisoricalGame(
+            () =>
+              (SELECTEDSPOTS.init = [
+                ...SELECTEDSPOTS.init,
+                spot,
+              ] as Array<number>),
+          );
+          setLength(() => (INDEX.init = SELECTEDSPOTS.init.length));
           if (SELECTEDSPOTS.init.length === 20) {
             setIsDisplay(() => (IsDisplayLive.init = false));
             setNextDisplay(() => (DisplayToShow.init = "History"));
           }
         }
-      }, 1500)
-      return () => clearInterval(intervalId)
+      }, 1500);
+      return () => clearInterval(intervalId);
     }
-  }, [SPOT.init, StartBallAnimation.init])
+  }, [SPOT.init, StartBallAnimation.init]);
   return (
     <div className="w-screen h-full flex justify-center items-center">
       <Renderer />
