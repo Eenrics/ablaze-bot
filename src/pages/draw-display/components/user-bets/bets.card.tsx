@@ -1,3 +1,4 @@
+
 import React from "react";
 
 function BetsCard({
@@ -70,18 +71,7 @@ function BetsCard({
               spots
             </div>
             <div className="text-right flex flex-row justify-end gap-[1px] items-center">
-              {/* <span className="bg-white px-2 py-[2px] text-black text-xs font-semibold rounded-[4px]">
-                                1
-                            </span>
-                            <span className="bg-[#ed880e] px-2 py-[2px] text-white text-xs font-semibold rounded-[4px]">
-                                2
-                            </span>
-                            <span className="bg-white px-2 py-[2px] text-black text-xs font-semibold rounded-[4px]">
-                                3
-                            </span>
-                            <span className="bg-white px-2 py-[2px] text-black text-xs font-semibold rounded-[4px]">
-                                4
-                            </span> */}
+             
               {choices.map((choice, i) => {
                 return (
                   <span
