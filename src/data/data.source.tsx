@@ -21,7 +21,7 @@ export const EVEN = false;
 export const CurrentGameID = "";
 export const IsDisplayLive = atom(false);
 export const INDEX = atom(0);
-export const PAYOUTINDEX = atom<number>(10);
+export const PAYOUTINDEX = atom(10);
 export const ISONLINE = atom(false);
 export const SELECTEDSPOTS = atom<number[]>([]);
 export const USER_BETS = atom<object | undefined>(undefined);
@@ -90,48 +90,93 @@ export const BETPAYOUTTABLE: Record<number, Record<string, number>[]> = {
     { num: 10, odd: 5000 },
   ],
 };
-export const ONLINE=atom(false);
-export const OFFLINE=atom(true);
 
-socket.on("disconnect", () => {
-  const [, setOnline] = useAtom(ONLINE);
-  const [, setOffline] = useAtom(OFFLINE);
-  setOnline(()=>(ONLINE.init = !socket.disconnected));
-  setOffline(()=>(OFFLINE.init = socket.disconnected));
-  console.log(socket.disconnected); // true
-});
-export const CheckIsOffline=()=>{
 
-  // socket.on("connect", () => {
-  //   const [, setOnline] = useAtom(ONLINE);
-  //   const [, setOffline] = useAtom(OFFLINE);
-  //   setOnline(()=>(ONLINE.init = true));
-  //   setOffline(()=>(OFFLINE.init = false));
-  //   console.log(socket.disconnected); // false
-  // });
+export const ONLINE=atom(true);
+export const OFFLINE=atom(false);
+
+// socket.on("disconnect", () => {
+//   const [, setOnline] = useAtom(ONLINE);
+//   const [, setOffline] = useAtom(OFFLINE);
+//   setOnline(()=>(ONLINE.init = !socket.disconnected));
+//   setOffline(()=>(OFFLINE.init = socket.disconnected));
+//   console.log(socket.disconnected); // true
+// });
+// export const CheckIsOffline=()=>{
+
+//   // socket.on("connect", () => {
+//   //   const [, setOnline] = useAtom(ONLINE);
+//   //   const [, setOffline] = useAtom(OFFLINE);
+//   //   setOnline(()=>(ONLINE.init = true));
+//   //   setOffline(()=>(OFFLINE.init = false));
+//   //   console.log(socket.disconnected); // false
+//   // });
   
 
 
-}
-const CheckcIsOline=()=>{
+// }
+const PayoutTblAnimn=(seconds:number)=>{
+  const [, setSec] = useAtom(PAYOUTINDEX);
 
-  socket.on("connect", () => {
-    const [, setOnline] = useAtom(ONLINE);
-    const [, setOffline] = useAtom(OFFLINE);
-    setOnline(()=>(ONLINE.init = true));
-    setOffline(()=>(OFFLINE.init = false));
-    console.log(socket.disconnected); // false
-  });
+  switch (seconds) {
+    case 55:
+      setSec(()=>(PAYOUTINDEX.init = 10));
+     
+      ;
+      break;
+    case 50:
+      setSec(()=>(PAYOUTINDEX.init = 9));
+      break;
+    case 45:
+      setSec(()=>(PAYOUTINDEX.init = 8));
+      break;
+    case 40:
+      setSec(()=>(PAYOUTINDEX.init = 7));
+      break;
+    case 35:
+      setSec(()=>(PAYOUTINDEX.init = 6));
+      break;
+    case 30:
+      setSec(()=>(PAYOUTINDEX.init = 5));
+      break;
+    case 25:
+      setSec(()=>(PAYOUTINDEX.init = 4));
+      break;
+    case 20:
+      setSec(()=>(PAYOUTINDEX.init = 3));
+      break;
+    case 15:
+      setSec(()=>(PAYOUTINDEX.init = 2));
+      break;
+    case 10:
+      setSec(()=>(PAYOUTINDEX.init = 1));
+      break;
+    case 5:
+      setSec(()=>(PAYOUTINDEX.init = 1));
+      break;
+    default:
+      break;
+  }
+}
+// const CheckcIsOline=()=>{
+
+//   socket.on("connect", () => {
+//     // const [, setOnline] = useAtom(ONLINE);
+//     // const [, setOffline] = useAtom(OFFLINE);
+//     // setOnline(()=>(ONLINE.init = true));
+//     // setOffline(()=>(OFFLINE.init = false));
+//     console.log(socket.disconnected); // false
+//   });
   
-  // socket.on("disconnect", () => {
-  //   const [, setOnline] = useAtom(ONLINE);
-  //   const [, setOffline] = useAtom(OFFLINE);
-  //   setOnline(()=>(ONLINE.init = false));
-  //   setOffline(()=>(OFFLINE.init = true));
-  //   console.log(socket.disconnected); // true
-  // });
+//   // socket.on("disconnect", () => {
+//   //   const [, setOnline] = useAtom(ONLINE);
+//   //   const [, setOffline] = useAtom(OFFLINE);
+//   //   setOnline(()=>(ONLINE.init = false));
+//   //   setOffline(()=>(OFFLINE.init = true));
+//   //   console.log(socket.disconnected); // true
+//   // });
 
-}
+// }
 // Timer section
 // 🚩 when the timer hits 00:00 the component timer will be changed to bet-close comp- before 10 sec retry to get the result  if the result is not empty go to the below line
 // 🚩 then after  we change isDisplayLive to True ==>
@@ -153,8 +198,8 @@ const fetchServerTime = () => {
   const [tempCont, setTempCont] = useAtom(TempData);
   const [newDailyId, setNewDailyId] = useState();
   const [, setStartBallAnimation] = useAtom(StartBallAnimation);
-  const [, setOnline] = useAtom(ONLINE);
-  const [, setOffline] = useAtom(OFFLINE);
+  // const [, setOnline] = useAtom(ONLINE);
+  // const [, setOffline] = useAtom(OFFLINE);
   const isFetched = useRef(false);
 
   // socket.on("disconnect", () => {
@@ -175,7 +220,7 @@ const fetchServerTime = () => {
         setGameID(() => (gameID.init += 1));
       }
     }
-    if (val.minutes == 2 && val.seconds == 9 && !isFetched.current) {
+    if (val.minutes == 2 && val.seconds <= 9 && !isFetched.current) {
       isFetched.current = true;
       CurrentGame().then((res) => {
         console.log(res);
@@ -195,6 +240,9 @@ const fetchServerTime = () => {
 
       // setIsDisplay(() => (IsDisplayLive.init = true));
     }
+    // if (val.minutes == 0  ){
+    //   PayoutTblAnimn(val.seconds)
+    // }
     if (val.minutes == 2) {
       setMinutes(() => (MINUTE.init = 0));
     } else {
@@ -256,6 +304,8 @@ export const GetUserBets = async () => {
     }
   }
 };
+
+
 
 
 ///
