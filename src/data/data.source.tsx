@@ -93,7 +93,14 @@ export const BETPAYOUTTABLE: Record<number, Record<string, number>[]> = {
 export const ONLINE=atom(false);
 export const OFFLINE=atom(true);
 
-const CheckcIsOffline=()=>{
+socket.on("disconnect", () => {
+  const [, setOnline] = useAtom(ONLINE);
+  const [, setOffline] = useAtom(OFFLINE);
+  setOnline(()=>(ONLINE.init = !socket.disconnected));
+  setOffline(()=>(OFFLINE.init = socket.disconnected));
+  console.log(socket.disconnected); // true
+});
+export const CheckIsOffline=()=>{
 
   // socket.on("connect", () => {
   //   const [, setOnline] = useAtom(ONLINE);
@@ -103,14 +110,8 @@ const CheckcIsOffline=()=>{
   //   console.log(socket.disconnected); // false
   // });
   
-  socket.on("disconnect", () => {
-    const [, setOnline] = useAtom(ONLINE);
-    const [, setOffline] = useAtom(OFFLINE);
-    setOnline(()=>(ONLINE.init = false));
-    setOffline(()=>(OFFLINE.init = true));
-    console.log(socket.disconnected); // true
-  });
-  return socket.disconnected;
+
+
 }
 const CheckcIsOline=()=>{
 
@@ -129,7 +130,7 @@ const CheckcIsOline=()=>{
   //   setOffline(()=>(OFFLINE.init = true));
   //   console.log(socket.disconnected); // true
   // });
-  return socket.connect;
+
 }
 // Timer section
 // 🚩 when the timer hits 00:00 the component timer will be changed to bet-close comp- before 10 sec retry to get the result  if the result is not empty go to the below line
@@ -152,8 +153,16 @@ const fetchServerTime = () => {
   const [tempCont, setTempCont] = useAtom(TempData);
   const [newDailyId, setNewDailyId] = useState();
   const [, setStartBallAnimation] = useAtom(StartBallAnimation);
-
+  const [, setOnline] = useAtom(ONLINE);
+  const [, setOffline] = useAtom(OFFLINE);
   const isFetched = useRef(false);
+
+  // socket.on("disconnect", () => {
+ 
+  //   setOnline(()=>(ONLINE.init = !socket.disconnected));
+  //   setOffline(()=>(OFFLINE.init = socket.disconnected));
+  //   console.log(socket.disconnected); // true
+  // });
 
   socket.on("timeStamp", async (val) => {
     if (val.minutes == 2 && val.seconds == 0) {
@@ -248,15 +257,12 @@ export const GetUserBets = async () => {
   }
 };
 
-export const GameTime = async () => {
-  // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>");
-  fetchServerTime();
-};
 
 ///
 export const Renderer = () => {
- console.log(ONLINE.init);
-  GameTime();
+
+
+fetchServerTime();
   const [Screen] = useAtom(DisplayToShow);
   switch (Screen) {
     case "BallMixing":

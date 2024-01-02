@@ -4,6 +4,7 @@ import {
   DisplayToShow,
   INDEX,
   IsDisplayLive,
+  OFFLINE,
   ONLINE,
   Renderer,
   SELECTEDSPOTS,
@@ -27,9 +28,9 @@ export const App = () => {
   useEffect(() => {
     const fun = async () => {
       const res = await CurrentGame();
-      // console.log("called");
+     
       if (res.status === 200) {
-        console.log("called");
+
         setGameID(() => (globalGameId.init = res?.data?.currentGame?.daily_id));
         {
           !IsDisplayLive.init
@@ -83,7 +84,7 @@ export const App = () => {
   }, [SPOT.init, StartBallAnimation.init]);
   return (
     <div className="w-screen h-full flex justify-center items-center">
-   { !ONLINE.init?  <Renderer />:
+   { OFFLINE.init?  <Renderer />:
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#950B01]  to-[#CE0F00] opacity-95 flex flex-col items-center justify-center  ">
       <div className="w-60 h-60 rounded-full border-4 border-white animate-pulse flex items-center justify-center">
   
