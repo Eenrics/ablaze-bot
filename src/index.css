@@ -1,0 +1,364 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif, poppins;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+@font-face {
+  font-family: "Moire";
+  src: url("/assets/fonts/moire-extrabold.woff") format("woff");
+}
+
+.moire {
+  font-family: "Moire";
+}
+
+@font-face {
+  font-family: "MicroFLF-Bold";
+  src: url("/assets/fonts/MicroFLF-Bold.ttf") format("woff");
+}
+
+.micro {
+  font-family: "MicroFLF-Bold";
+}
+
+@font-face {
+  font-family: "Good Time";
+  src: url("@assets/fonts/goodtime.ttf") format("truetype");
+}
+
+.goodtime {
+  font-family: "Good Time";
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.scale-down-center {
+  -webkit-animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.scale-down-center-2 {
+  -webkit-animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: scale-down-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 0.5s;
+}
+@font-face {
+  src: url("@assets/fonts/Poppins-Black.ttf") format("truetype");
+  font-family: "Poppins", sans-serif;
+}
+.poppins {
+  font-family: "Poppins";
+}
+@-webkit-keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+  }
+
+  20% {
+    -webkit-transform: scale(1.25);
+    transform: scale(1.25);
+  }
+
+  40% {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+  }
+
+  60% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  80% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+  }
+
+  20% {
+    -webkit-transform: scale(1.25);
+    transform: scale(1.25);
+  }
+
+  40% {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+  }
+
+  60% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  80% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.shake {
+  animation: tilt-shaking infinite 0.2s ease-in-out;
+}
+
+@keyframes tilt-shaking {
+  0% {
+    transform: rotate(0deg);
+    transform: translateX(1px);
+  }
+
+  10% {
+    transform: rotate(0eg);
+    transform: translateX(-1px);
+  }
+
+  25% {
+    transform: rotate(5deg);
+    transform: translateX(1px);
+  }
+
+  35% {
+    transform: rotate(0eg);
+    transform: translateX(-1px);
+  }
+
+  50% {
+    transform: rotate(0eg);
+    transform: translateX(1px);
+  }
+
+  60% {
+    transform: rotate(0eg);
+    transform: translateX(1px);
+  }
+
+  75% {
+    transform: rotate(-5deg);
+    transform: translateX(-1px);
+  }
+
+  85% {
+    transform: rotate(0eg);
+    transform: translateX(-1px);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.inset-shadow {
+  box-shadow: 0px 0px 20px 10px #00000026 inset;
+}
+
+.background-container {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("/assets/portrait-min.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+
+  /* scale:115%; */
+  align-items: center;
+  justify-content: center;
+}
+
+/* jackpot slide animation */
+@keyframes slideRightToLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.text-background-color {
+  background: linear-gradient(180.73deg, #ffe600 52.5%, #000000 133.2%);
+}
+.animate-slide-right-to-left {
+  animation: slideRightToLeft 10s linear infinite; /* Jackpot display animation to 10 sec */
+}
+
+.jackpot-drop-shadow {
+  text-shadow: 0px 4px 4px 0px #000000;
+}
+
+.jackpot-win {
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  top: 30;
+  left: 50%;
+  transform: translateX(-50%);
+  text-shadow:
+    2px 2px 3px #00000073,
+    2px 0px 0px #ffe6008e;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+}
+
+.relative {
+  position: relative;
+}
+
+/* Game status timer  */
+/* box-shadow: 0px 4px 4px 0px #0000006B; */
+
+.status-timer {
+  text-align: center;
+  font-family: "MicroFLF-Bold";
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  text-shadow: 0px 5px 5px #00000028;
+  background: linear-gradient(180deg, #ffe600 46.5%, #000000 140%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* Game status title  */
+
+.draw-text {
+  text-shadow: 0px 4px 4px #0000003d;
+  background: linear-gradient(180deg, #ffe600 46.3%, #000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.keno-text {
+  background: linear-gradient(180deg, #ffe600 46.3%, #000000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.status-title {
+  /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.42); */
+  font-family: "MicroFLF-Bold";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-shadow: 0px 4px 4px 0px #0000006b;
+  background: linear-gradient(180deg, #ffe600 46.3%, #000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Game draw number  */
+
+.draw-number {
+  color: #fff;
+  text-shadow: 0px 4px 14px rgba(0, 0, 0, 0.63);
+  font-family: "MicroFLF-Bold";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.bar-size {
+  font-size: 17.1px;
+}
+
+.tail-width {
+  width: 100px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  /* background: linear-gradient(180deg, #A51105 -29.85%, #B40E01 133.88%); */
+}
