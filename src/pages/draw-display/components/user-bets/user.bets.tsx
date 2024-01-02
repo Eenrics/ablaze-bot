@@ -1,10 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import BetsCard from "./bets.card";
-import { USER_BETS } from "../../../../data/data.source";
+import { SELECTEDSPOTS, USER_BETS } from "../../../../data/data.source";
 import { useAtom } from "jotai";
 
 function UserBets() {
     const [userBets] = useAtom(USER_BETS);
+    const [selectedSpots] = useAtom(SELECTEDSPOTS);
     const bets: object[] = [];
     const draw: number[] = [];
     let maximumPayout = 0;
@@ -60,7 +61,7 @@ function UserBets() {
                     </div>
                     {bets.map((bet, i) => {
                         return (
-                            <BetsCard bet={bet} key={i} index={i} draw={draw} />
+                            <BetsCard bet={bet} key={i} index={i} draw={draw.length ? draw : selectedSpots} />
                         );
                     })}
                 </div>
