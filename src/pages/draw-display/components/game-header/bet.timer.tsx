@@ -6,8 +6,8 @@ function BetTimer() {
     <div className="flex justify-center items-center">
       <div className="w-100 flex flex-col justify-center items-center ">
         <p className="status-timer ">
-          {MINUTE.init.toString().padStart(2, "0")}:
-          {SECOND.init.toString().padStart(2, "0")}
+          {MINUTE.init?.toString().padStart(2, "0")}:
+          {SECOND.init?.toString().padStart(2, "0")}
           {/* {minutesDisplay}:{secondsDisplay} */}
           {/* {minutesDisplay.value === '00' && secondsDisplay.value === '00' ? <GameBetClosed /> : `${minutesDisplay}:${secondsDisplay}`} */}
         </p>
