@@ -66,11 +66,11 @@ function UserBets() {
                     })}
                 </div>
                 <div className=" bg-[#b70d00] [box-shadow:0px_4px_4px_0px_#00000040] flex justify-between">
-                    <p className=" capitalize micro text-white text-sm p-3 text-[3.4vw]">
+                    <p className=" capitalize micro text-white text-sm p-3 text-[3vw]">
                         min payout :{" "}
                         <span className="text-[#ff0000] uppercase font-extrabold">{minimunPayout.toLocaleString()} birr</span>
                     </p>
-                    <p className=" capitalize micro text-white text-sm p-3 text-[3.4vw]">
+                    <p className=" capitalize micro text-white text-sm p-3 text-[3vw]">
                         max payout :{" "}
                         <span className=" bg-gradient-to-b from-[#ffe500] to-[#7a6e01] bg-clip-text text-transparent font-extrabold uppercase">
                             {maximumPayout.toLocaleString()} birr
